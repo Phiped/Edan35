@@ -53,12 +53,12 @@ bool cRasterizer::setup(const cVertex &v0,const cVertex &v1,const cVertex &v2)
 	int signed_area;
 
 	// fetch position coordinates (only x & y) for the three vertices of the triangle
-	x[0]=floatToFixed(0, mVertices[0].mAttributes[ATTRIBUTE_POSITION].x);		// make them be on [n,0] fixedpoint format
-	x[1]=floatToFixed(0, mVertices[1].mAttributes[ATTRIBUTE_POSITION].x);		
-	x[2]=floatToFixed(0, mVertices[2].mAttributes[ATTRIBUTE_POSITION].x);		
-	y[0]=floatToFixed(0, mVertices[0].mAttributes[ATTRIBUTE_POSITION].y);
-	y[1]=floatToFixed(0, mVertices[1].mAttributes[ATTRIBUTE_POSITION].y);
-	y[2]=floatToFixed(0, mVertices[2].mAttributes[ATTRIBUTE_POSITION].y);
+	x[0]=floatToFixed(2, mVertices[0].mAttributes[ATTRIBUTE_POSITION].x);		// make them be on [n,0] fixedpoint format
+	x[1]=floatToFixed(2, mVertices[1].mAttributes[ATTRIBUTE_POSITION].x);		
+	x[2]=floatToFixed(2, mVertices[2].mAttributes[ATTRIBUTE_POSITION].x);		
+	y[0]=floatToFixed(2, mVertices[0].mAttributes[ATTRIBUTE_POSITION].y);
+	y[1]=floatToFixed(2, mVertices[1].mAttributes[ATTRIBUTE_POSITION].y);
+	y[2]=floatToFixed(2, mVertices[2].mAttributes[ATTRIBUTE_POSITION].y);
 
 	//---- compute integer bounding box of triangle
 	// min corner
@@ -69,11 +69,12 @@ bool cRasterizer::setup(const cVertex &v0,const cVertex &v1,const cVertex &v2)
 	// max corner
 	mBBox2DMax.x=MAX3(x[0],x[1],x[2]);
 	mBBox2DMax.y=MAX3(y[0],y[1],y[2]);
-	mBBox2DMax.x=MIN2(mBBox2DMax.x+1,mColorUnit->getWidth()-1);	// prevent too large coords
-	mBBox2DMax.y=MIN2(mBBox2DMax.y+1,mColorUnit->getHeight()-1);
+	mBBox2DMax.x=MIN2(mBBox2DMax.x+1,(mColorUnit->getWidth()-1)<<2);	// prevent too large coords
+	mBBox2DMax.y=MIN2(mBBox2DMax.y+1,(mColorUnit->getHeight()-1)<<2);
 	//---- end of BBox computation
 
 	signed_area = (x[1]-x[0]) * (y[2]-y[0]) - (x[2]-x[0]) * (y[1]-y[0]);
+	//signed_area = floatToFixed(2, signed_area);
 	if(signed_area==0) return false;									 // zero-area triangle? if so, skip it.
 
 	//---- setup edge functions: note the order; an edge function with number n is derived from vertices not including n
@@ -166,6 +167,8 @@ uint32 cRasterizer::interpolateZ(Vec2f bary)
 
 bool cRasterizer::perFragment(int xi,int yi)
 {
+	xi >>= 2;
+	yi >>= 2;
 	//---------------------------------------------------------------------
 	//---- FLOATING-POINT PER-PIXEL COMPUTATIONS --------------------------
 	//---------------------------------------------------------------------
@@ -220,9 +223,9 @@ void cRasterizer::rasterizeTriangle(void)
 	ASSERT(mDepthUnit);
 
 	// brute force traversal of triangle: visit every pixel in the screen-space bounding-box of the triangle
-	for(int yi=mBBox2DMin.y; yi<=mBBox2DMax.y; yi++)
+	for(int yi= mBBox2DMin.y; yi<= mBBox2DMax.y; yi++)
 	{
-		for(int xi=mBBox2DMin.x; xi<mBBox2DMax.x; xi++)	
+		for(int xi=mBBox2DMin.x; xi < mBBox2DMax.x; xi++)
 		{		
 			if(inside(xi,yi))								// use edge functions for inclusion testing
 			{

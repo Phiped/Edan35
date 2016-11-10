@@ -40,7 +40,8 @@ void cRendererAPI::setResolution(int width, int height)
 	mRasterizer->getColorUnit()->reshape(width,height);
 	mRasterizer->getDepthUnit()->reshape(width,height);	
 }
-void cRendererAPI::activateLUR(void)
+
+void cRendererAPI::activateLUR(void)
 {
 	mLURActive=true;			// make our software rasterizer (LUR) active by default
 }

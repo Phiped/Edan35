@@ -31,5 +31,9 @@ bool cEdgeFunc::inside(const int x, const int y, int &signed_dist) const
 {
 	signed_dist = mA*x + mB*y + mC;
 	if(signed_dist>0) return true;
+	if (signed_dist < 0) return false;
+	if (mA > 0) return true;
+	if (mA < 0) return false;
+	return mB > 0;
 	return false;
 }
