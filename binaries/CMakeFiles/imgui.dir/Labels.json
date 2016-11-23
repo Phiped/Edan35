@@ -1,0 +1,55 @@
+
+{
+	"sources" : 
+	[
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/imgui"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/CG_Labs/CMakeLists.txt"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/f9fa6856d03858188ef3e05db39b9371/imgui.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/736a125beb96157774ab80ea6504d5ae/imgui-complete.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-install.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-mkdir.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-download.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-update.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-patch.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-configure.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : [ "imgui" ],
+		"name" : "imgui"
+	}
+}

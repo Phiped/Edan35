@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDAN35\assignment2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDAN35\assignment2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\node.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\helpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDAN35\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7B8E8E2C-449F-3039-8973-147A733F32F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{EFE33701-F0C5-3867-96DC-A082AEB66E1D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

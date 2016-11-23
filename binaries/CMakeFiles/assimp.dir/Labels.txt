@@ -1,0 +1,14 @@
+# Target labels
+ assimp
+# Source files and their labels
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/assimp
+C:/Users/Tobbe/Desktop/edan35/CG_Labs/CMakeLists.txt
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/f9fa6856d03858188ef3e05db39b9371/assimp.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/736a125beb96157774ab80ea6504d5ae/assimp-complete.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-install.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-mkdir.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-download.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-update.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-patch.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-configure.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-build.rule

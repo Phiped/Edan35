@@ -1,0 +1,14 @@
+# Target labels
+ imgui
+# Source files and their labels
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/imgui
+C:/Users/Tobbe/Desktop/edan35/CG_Labs/CMakeLists.txt
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/f9fa6856d03858188ef3e05db39b9371/imgui.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/736a125beb96157774ab80ea6504d5ae/imgui-complete.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-install.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-mkdir.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-download.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-update.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-patch.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-configure.rule
+C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/0c8da893332800d1fc55b2d1d0dc78d9/imgui-build.rule

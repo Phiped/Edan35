@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\01ac4e8658d082b5ce4b6c985de2a51f\assimp-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\01ac4e8658d082b5ce4b6c985de2a51f\assimp-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\01ac4e8658d082b5ce4b6c985de2a51f\assimp-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\01ac4e8658d082b5ce4b6c985de2a51f\assimp-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\01ac4e8658d082b5ce4b6c985de2a51f\assimp-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\01ac4e8658d082b5ce4b6c985de2a51f\assimp-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\01ac4e8658d082b5ce4b6c985de2a51f\assimp-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\736a125beb96157774ab80ea6504d5ae\assimp-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\f9fa6856d03858188ef3e05db39b9371\assimp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\assimp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E7873FBD-8407-3433-A14B-71F3C03EB495}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

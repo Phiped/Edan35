@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221_Assignment1\main.cpp">
+      <Filter>EDA221\Assignment1</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221_Assignment1\SolarSystem.cpp">
+      <Filter>EDA221\Assignment1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221_Assignment1\SolarSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221_Assignment1\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{EFE33701-F0C5-3867-96DC-A082AEB66E1D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EDA221">
+      <UniqueIdentifier>{5FA30EF1-CDF2-382D-8A59-DE5E021F3599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EDA221\Assignment1">
+      <UniqueIdentifier>{09A94369-5DAA-3A94-A2E4-4D24DE82881E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

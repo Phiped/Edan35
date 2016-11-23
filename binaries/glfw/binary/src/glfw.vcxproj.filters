@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\monitor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\vulkan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_joystick.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_monitor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_tls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\wgl_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\egl_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\binary\src\glfw_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include\GLFW\glfw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include\GLFW\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\win32_joystick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\wgl_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\egl_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7B8E8E2C-449F-3039-8973-147A733F32F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{EFE33701-F0C5-3867-96DC-A082AEB66E1D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
