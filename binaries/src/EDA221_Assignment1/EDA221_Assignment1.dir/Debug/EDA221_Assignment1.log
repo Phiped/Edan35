@@ -1,0 +1,6 @@
+﻿  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDA221_Assignment1/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221_Assignment1\CMakeFiles\generate.stamp is up-to-date.
+  main.cpp
+  SolarSystem.cpp
+  Generating Code...
+  EDA221_Assignment1.vcxproj -> C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221_Assignment1\Debug\EDA221_Assignment1.exe

@@ -1,0 +1,21 @@
+﻿  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/core/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\Tobbe\Desktop\edan35\binaries\src\core\CMakeFiles\generate.stamp is up-to-date.
+  Bonobo.cpp
+  GLStateInspection.cpp
+  GLStateInspectionView.cpp
+C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\core\GLStateInspectionView.cpp(36): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
+  InputHandler.cpp
+  Log.cpp
+C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\core\Log.cpp(82): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\core\Log.cpp(131): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
+  LogView.cpp
+  Misc.cpp
+  opengl.cpp
+  Types.cpp
+  various.cpp
+  Window.cpp
+  Generating Code...
+  bonobo.vcxproj -> C:\Users\Tobbe\Desktop\edan35\binaries\src\core\Debug\bonobo.lib

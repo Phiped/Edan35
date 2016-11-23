@@ -1,0 +1,8 @@
+﻿  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/external/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\Tobbe\Desktop\edan35\binaries\src\external\CMakeFiles\generate.stamp is up-to-date.
+  glad.c
+  imgui_impl_glfw_gl3.cpp
+  lodepng.cpp
+C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external\lodepng.cpp(3416): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
+  Generating Code...
+  external_libs.vcxproj -> C:\Users\Tobbe\Desktop\edan35\binaries\src\external\Debug\external_libs.lib

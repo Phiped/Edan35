@@ -1,0 +1,10 @@
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/CMakeFiles/UpdateAssimpLibsDebugSymbolsAndDLLs.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/CMakeFiles/uninstall.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/CMakeFiles/INSTALL.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/contrib/zlib/CMakeFiles/zlibstatic.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/contrib/zlib/CMakeFiles/INSTALL.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/contrib/zlib/CMakeFiles/ALL_BUILD.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/CMakeFiles/assimp.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/CMakeFiles/INSTALL.dir
