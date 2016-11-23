@@ -1,7 +1,2 @@
-﻿  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDAN35/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\Tobbe\Desktop\edan35\binaries\src\EDAN35\CMakeFiles\generate.stamp is up-to-date.
-  assignment2.cpp
-  node.cpp
-  helpers.cpp
-  Generating Code...
+﻿  assignment2.cpp
   EDAN35_Assignment2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\binaries\src\EDAN35\Debug\EDAN35_Assignment2.exe
