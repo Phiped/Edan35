@@ -1,0 +1,4 @@
+C:/Users/Tobbe/Desktop/edan35/binaries/imgui/build/CMakeFiles/imgui.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/imgui/build/CMakeFiles/INSTALL.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/imgui/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Tobbe/Desktop/edan35/binaries/imgui/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,55 @@
+
+{
+	"sources" : 
+	[
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/assimp"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/CG_Labs/CMakeLists.txt"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/f9fa6856d03858188ef3e05db39b9371/assimp.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/736a125beb96157774ab80ea6504d5ae/assimp-complete.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-install.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-mkdir.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-download.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-update.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-patch.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-configure.rule"
+		},
+		
+		{
+			"file" : "C:/Users/Tobbe/Desktop/edan35/binaries/CMakeFiles/01ac4e8658d082b5ce4b6c985de2a51f/assimp-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : [ "assimp" ],
+		"name" : "assimp"
+	}
+}

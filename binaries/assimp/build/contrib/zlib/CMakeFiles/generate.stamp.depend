@@ -1,0 +1,17 @@
+# CMake generation dependency list for this directory.
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/contrib/zlib/CMakeLists.txt
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckTypeSize.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFileCXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckFunctionExists.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckCSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.c.in
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.c.in
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.c.in
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckTypeSize.c.in
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/CMakeFiles/CheckTypeSize/OFF64_T.c
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckFunctionExists.c
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.c.in
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/contrib/zlib/zlib.pc.cmakein
+C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/contrib/zlib/zconf.h.cmakein

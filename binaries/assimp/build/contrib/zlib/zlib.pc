@@ -1,0 +1,13 @@
+prefix=C:/Users/Tobbe/Desktop/edan35/binaries/assimp
+exec_prefix=C:/Users/Tobbe/Desktop/edan35/binaries/assimp
+libdir=
+sharedlibdir=
+includedir=
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.8
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

@@ -1,0 +1,1 @@
+cmd='C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>;-DASSIMP_NO_EXPORT=ON;-DASSIMP_BUILD_ASSIMP_TOOLS=OFF;-DASSIMP_BUILD_TESTS=OFF;-GVisual Studio 14 2015 Win64;C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp'

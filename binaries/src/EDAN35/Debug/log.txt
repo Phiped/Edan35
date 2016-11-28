@@ -1,0 +1,16 @@
+
+ === Log (Nov 23 2016, 09:47:45) === 
+
+Running Bonobo v0.2
+Initiating window management system...
+Done
+Using OpenGL 4.1 with context options: profile=core, debug=false, forward compatible=false.
+Loading "C:/Users/Tobbe/Desktop/edan35/CG_Labs/res/scenes/../crysponza/sponza.obj"
+	* materials
+[C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\helpers.cpp, getTextureData (45)]
+Warning: Couldn't load or decode image file C:/Users/Tobbe/Desktop/edan35/CG_Labs/res/textures/../crysponza/textures/gi_flag_mask.png
+	* meshes
+Reloading shaders
+
+ === End of log === 
+

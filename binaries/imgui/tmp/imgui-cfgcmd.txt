@@ -1,0 +1,1 @@
+cmd='C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>;-GVisual Studio 14 2015 Win64;C:/Users/Tobbe/Desktop/edan35/binaries/imgui/src/imgui'

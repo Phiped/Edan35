@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{7D423ED1-5CF7-30EB-8E5E-80FFF933D137}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>assimp</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp-vc140-mt</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp-vc140-mt</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp-vc140-mt</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp-vc140-mt</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Debug";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Debug\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\contrib\zlib\Debug\zlibstaticd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/Debug/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/Debug/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Release";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Release\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\contrib\zlib\Release\zlibstatic.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/Release/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/Release/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="MinSizeRel";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"MinSizeRel\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\contrib\zlib\MinSizeRel\zlibstatic.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/MinSizeRel/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/MinSizeRel/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="RelWithDebInfo";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OPENDDL_NO_USE_CPP11;ASSIMP_BUILD_NO_EXPORT;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"RelWithDebInfo\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\.;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\contrib\zlib;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\rapidjson\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..\contrib\openddlparser\include;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\contrib\zlib\RelWithDebInfo\zlibstatic.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/RelWithDebInfo/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/code/RelWithDebInfo/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp -BC:/Users/Tobbe/Desktop/edan35/binaries/assimp/build --check-stamp-file C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp -BC:/Users/Tobbe/Desktop/edan35/binaries/assimp/build --check-stamp-file C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp -BC:/Users/Tobbe/Desktop/edan35/binaries/assimp/build --check-stamp-file C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp -BC:/Users/Tobbe/Desktop/edan35/binaries/assimp/build --check-stamp-file C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/Tobbe/Desktop/edan35/binaries/assimp/src/assimp/code/CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\fast_atof.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\qnan.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BaseImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BaseProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Importer.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ScenePrivate.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ByteSwapper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DefaultProgressHandler.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DefaultIOStream.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DefaultIOSystem.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CInterfaceIOWrapper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Hash.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFF.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MemoryIOWrapper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ParsingUtils.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StreamReader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StreamWriter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StringComparison.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StringUtils.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SGSpatialSort.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\VertexTriangleAdjacency.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\GenericProperty.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SpatialSort.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SceneCombiner.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ScenePreprocessor.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SkeletonMeshBuilder.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SplitByBoneCountProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SmoothingGroups.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StandardShapes.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TargetAnimation.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RemoveComments.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Subdivision.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Vertex.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LineSplitter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TinyFormatter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Profiler.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LogAux.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Bitmap.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XMLTools.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\LogStream.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\Logger.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\NullLogger.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Win32DebugLogStream.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FileLogStream.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StdOStreamLogStream.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlobIOSystem.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CalcTangentsProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ComputeUVMappingProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ConvertToLHProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FindDegenerates.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FindInstancesProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FindInvalidDataProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FixNormalsStep.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\GenFaceNormalsProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\GenVertexNormalsProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PretransformVertices.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ImproveCacheLocality.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\JoinVerticesProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LimitBoneWeightsProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RemoveRedundantMaterials.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RemoveVCProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SortByPTypeProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SplitLargeMeshes.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TextureTransform.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TriangulateProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ValidateDataStructure.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OptimizeGraph.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OptimizeMeshes.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DeboneProcess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ProcessHelper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PolyTools.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MakeVerboseFormat.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MaterialSystem.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StepExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\3DSHelper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\3DSLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\3DSExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ACLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ASELoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ASEParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\AssbinExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\AssbinLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\AssxmlExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\B3DImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BVHLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ColladaHelper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ColladaLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ColladaParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ColladaExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DXFLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DXFHelper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CSMLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\HMPFileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\HMPLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\HalfLifeFileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IRRMeshLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IRRShared.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IRRLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWOAnimation.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWOFileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWOLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWSLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD2FileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD2Loader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD2NormalTable.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD3FileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD3Loader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD5Loader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD5Parser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDCFileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDCLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDCNormalTable.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDLDefaultColorMap.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDLFileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDLLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\NFFLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\NDOLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OFFLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjFileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjFileImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjFileMtlImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjFileParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjTools.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreStructs.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreParsingUtils.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreBinarySerializer.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreXmlSerializer.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OpenGEXExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OpenGEXImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OpenGEXStructs.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PlyLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PlyParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PlyExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MS3DLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\COBLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\COBScene.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderDNA.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderDNA.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderScene.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderSceneGen.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderIntermediate.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderModifier.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderBMesh.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderTessellator.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCReaderGen.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCUtil.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STEPFile.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STEPFileReader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STEPFileEncoding.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XGLLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXCompileConfig.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXTokenizer.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXImportSettings.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXConverter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXUtil.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXDocument.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXProperties.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXMeshGeometry.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3DLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3BSPFileData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3BSPFileParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3BSPFileImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3BSPZipArchive.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RawLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SIBImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SMDLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STLLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STLExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TerragenLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\UnrealLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XFileHelper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XFileImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XFileParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XFileExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFAsset.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFAsset.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFAssetWriter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFAssetWriter.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFExporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\D3MFImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\D3MFOpcPackage.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\irrXMLWrapper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\irrXML\CXMLReaderImpl.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\irrXML\heapsort.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\irrXML\irrArray.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\irrXML\irrString.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\irrXML\irrTypes.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\irrXML\irrXML.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\ConvertUTF\ConvertUTF.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\unzip\crypt.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\unzip\ioapi.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\unzip\unzip.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\common\shapes.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\common\utils.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\cdt.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\sweep.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\clipper\clipper.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParser.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParserUtils.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\include\openddlparser\OpenDDLCommon.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\include\openddlparser\OpenDDLExport.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\include\openddlparser\DDLNode.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\include\openddlparser\Value.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\anim.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\ai_assert.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\camera.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\color4.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\color4.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\config.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\defs.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\cfileio.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\light.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\material.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\material.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\matrix3x3.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\matrix3x3.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\matrix4x4.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\matrix4x4.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\mesh.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\postprocess.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\quaternion.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\quaternion.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\scene.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\metadata.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\texture.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\types.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\vector2.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\vector2.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\vector3.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\vector3.inl" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\version.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\cimport.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\importerdesc.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\Importer.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\IOStream.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\IOSystem.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\cexport.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\Exporter.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\include\assimp\Compiler\pstdint.h" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Assimp.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BaseImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BaseProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PostStepRegistry.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ImporterRegistry.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DefaultIOStream.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DefaultIOSystem.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Importer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SGSpatialSort.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\VertexTriangleAdjacency.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SpatialSort.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SceneCombiner.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ScenePreprocessor.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SkeletonMeshBuilder.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SplitByBoneCountProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StandardShapes.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TargetAnimation.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RemoveComments.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Subdivision.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Bitmap.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Version.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DefaultLogger.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Exporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\AssimpCExport.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CalcTangentsProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ComputeUVMappingProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ConvertToLHProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FindDegenerates.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FindInstancesProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FindInvalidDataProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FixNormalsStep.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\GenFaceNormalsProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\GenVertexNormalsProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PretransformVertices.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ImproveCacheLocality.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\JoinVerticesProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LimitBoneWeightsProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RemoveRedundantMaterials.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RemoveVCProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SortByPTypeProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SplitLargeMeshes.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TextureTransform.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TriangulateProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ValidateDataStructure.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OptimizeGraph.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OptimizeMeshes.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DeboneProcess.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ProcessHelper.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MakeVerboseFormat.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MaterialSystem.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\StepExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\3DSConverter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\3DSLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\3DSExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ACLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ASELoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ASEParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\AssbinExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\AssbinLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\AssxmlExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\B3DImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BVHLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ColladaLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ColladaParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ColladaExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\DXFLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\CSMLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\HMPLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IRRMeshLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IRRShared.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IRRLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWOAnimation.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWOBLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWOLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWOMaterial.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\LWSLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD2Loader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD3Loader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD5Loader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MD5Parser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDCLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDLLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MDLMaterialLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\NFFLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\NDOLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OFFLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjFileImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjFileMtlImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjFileParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\ObjExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreStructs.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreBinarySerializer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreXmlSerializer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OgreMaterial.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OpenGEXExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\OpenGEXImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PlyLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PlyParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\PlyExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\MS3DLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\COBLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderDNA.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderScene.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderModifier.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderBMesh.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\BlenderTessellator.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCReaderGen.cpp" >
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCUtil.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCGeometry.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCMaterial.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCProfile.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCCurve.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCBoolean.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\IFCOpenings.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STEPFileReader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STEPFileEncoding.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XGLLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXTokenizer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXConverter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXUtil.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXDocument.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXProperties.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXMeshGeometry.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXMaterial.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXModel.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXAnimation.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXNodeAttribute.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXDeformer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXBinaryTokenizer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\FBXDocumentUtil.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3DLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3BSPFileParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3BSPFileImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\Q3BSPZipArchive.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\RawLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SIBImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\SMDLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STLLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\STLExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\TerragenLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\UnrealLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XFileImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XFileParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\XFileExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\glTFExporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\D3MFImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\code\D3MFOpcPackage.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\irrXML\irrXML.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\ConvertUTF\ConvertUTF.c" >
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\unzip\ioapi.c" >
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\unzip\unzip.c" >
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\common\shapes.cc"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.cc"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\cdt.cc"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\sweep.cc"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.cc"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\clipper\clipper.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\code\OpenDDLParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\code\DDLNode.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\code\OpenDDLCommon.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\code\OpenDDLExport.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\binaries\assimp\src\assimp\contrib\openddlparser\code\Value.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/ZERO_CHECK.vcxproj">
+      <Project>698D6B55-6BA9-3DF2-A170-6A12FD9E39B1</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/edan35/binaries/assimp/build/contrib/zlib/zlibstatic.vcxproj">
+      <Project>60A10F11-D047-3E36-9A7F-0FBE9E9C77D4</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

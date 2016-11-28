@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{528AF6C3-6DF7-31A2-8B55-895FA7AD1CE1}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>Assignment5</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assignment5.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assignment5</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assignment5.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assignment5</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Assignment5.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Assignment5</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\core\Debug\bonobo.lib;opengl32.lib;..\..\imgui\lib\imgui.lib;..\..\assimp\lib\assimp-vc140-mt.lib;..\external\Debug\external_libs.lib;..\..\glfw\binary\src\Debug\glfw3.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/edan35/binaries/src/EDA221/Debug/Assignment5.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/edan35/binaries/src/EDA221/Debug/Assignment5.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\core\Release\bonobo.lib;opengl32.lib;..\..\imgui\lib\imgui.lib;..\..\assimp\lib\assimp-vc140-mt.lib;..\external\Release\external_libs.lib;..\..\glfw\binary\src\Release\glfw3.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/edan35/binaries/src/EDA221/Release/Assignment5.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/edan35/binaries/src/EDA221/Release/Assignment5.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src;C:\Users\Tobbe\Desktop\edan35\binaries;C:\Users\Tobbe\Desktop\edan35\binaries\imgui\include;D:\datorgrafik\Eda221\build\glm\src\glm;C:\Users\Tobbe\Desktop\edan35\binaries\assimp\include;C:\Users\Tobbe\Desktop\edan35\binaries\glfw\code\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:x64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\core\RelWithDebInfo\bonobo.lib;opengl32.lib;..\..\imgui\lib\imgui.lib;..\..\assimp\lib\assimp-vc140-mt.lib;..\external\RelWithDebInfo\external_libs.lib;..\..\glfw\binary\src\RelWithDebInfo\glfw3.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/edan35/binaries/src/EDA221/RelWithDebInfo/Assignment5.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/edan35/binaries/src/EDA221/RelWithDebInfo/Assignment5.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDA221/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/edan35/CG_Labs -BC:/Users/Tobbe/Desktop/edan35/binaries --check-stamp-file C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDA221/CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDA221/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/edan35/CG_Labs -BC:/Users/Tobbe/Desktop/edan35/binaries --check-stamp-file C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDA221/CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDA221/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/edan35/CG_Labs -BC:/Users/Tobbe/Desktop/edan35/binaries --check-stamp-file C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDA221/CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\CMakeLists.txt;C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Tobbe\Desktop\edan35\binaries\src\EDA221\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\assignment5.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\node.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\helpers.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\interpolation.hpp" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\parametric_shapes.hpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\assignment5.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\node.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\helpers.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\interpolation.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\EDA221\parametric_shapes.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/edan35/binaries/ZERO_CHECK.vcxproj">
+      <Project>4CA33ABF-C100-3BC7-9BFC-F177408524D8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/edan35/binaries/src/core/bonobo.vcxproj">
+      <Project>3AC225CC-FBC6-32A3-8392-6FE1FA82A89F</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/edan35/binaries/src/external/external_libs.vcxproj">
+      <Project>35070A47-BE80-38EA-A16D-721D2166DF18</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/edan35/binaries/glfw/binary/src/glfw.vcxproj">
+      <Project>4B1B52B1-EA88-36D9-9C8D-AD2B8688998B</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
