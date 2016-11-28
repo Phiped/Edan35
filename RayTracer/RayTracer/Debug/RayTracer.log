@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\tobbe\desktop\edan35\raytracer\raytracer\main.cpp(9): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+  RayTracer.vcxproj -> C:\Users\Tobbe\Desktop\edan35\RayTracer\Debug\RayTracer.exe
+  RayTracer.vcxproj -> C:\Users\Tobbe\Desktop\edan35\RayTracer\Debug\RayTracer.pdb (Partial PDB)
