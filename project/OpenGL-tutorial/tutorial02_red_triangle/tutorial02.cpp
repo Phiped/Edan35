@@ -32,7 +32,7 @@ int main( void )
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow( 1024, 768, "Tutorial 02 - Red triangle", NULL, NULL);
+	window = glfwCreateWindow(512, 512, "Raytracing", NULL, NULL);
 	if( window == NULL ){
 		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
 		getchar();
@@ -60,28 +60,105 @@ int main( void )
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
-	// Create and compile our GLSL program from the shaders
-	GLuint programID = LoadShaders( "SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader" );
+
+
+	// dimensions of the image
+	int tex_w = 512, tex_h = 512;
+	GLuint tex_output;
+	glGenTextures(1, &tex_output);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, tex_output);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, tex_w, tex_h, 0, GL_RGBA, GL_FLOAT,
+	 NULL);
+	glBindImageTexture(0, tex_output, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+
+	int work_grp_size[3];
+	int work_grp_cnt[3];
+	int work_grp_inv;
+	const char* the_ray_shader_string = "computeShader.glsl";
+
+
+	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 0, &work_grp_cnt[0]);
+	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 1, &work_grp_cnt[1]);
+	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 2, &work_grp_cnt[2]);
+
+	printf("max global (total) work group size x:%i y:%i z:%i\n",
+	  work_grp_size[0], work_grp_size[1], work_grp_size[2]);
+
+	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 0, &work_grp_size[0]);
+	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 1, &work_grp_size[1]);
+	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 2, &work_grp_size[2]);
+
+	printf("max local (in one shader) work group sizes x:%i y:%i z:%i\n",
+	  work_grp_size[0], work_grp_size[1], work_grp_size[2]);
+
+	glGetIntegerv(GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &work_grp_inv);
+	printf("max local work group invocations %i\n", work_grp_inv);
+
+
+
+
+	GLuint ray_shader = glCreateShader(GL_COMPUTE_SHADER);
+	glShaderSource(ray_shader, 1, &the_ray_shader_string, NULL);
+	glCompileShader(ray_shader);
+	// check for compilation errors as per normal here
+
+	GLuint ray_program = glCreateProgram();
+	glAttachShader(ray_program, ray_shader);
+	glLinkProgram(ray_program);
+	// check for linking errors and validate program as per normal here
+
+
+
+	// Create and compile our GLSL program from the shaders 
+	GLuint programID = LoadShaders( "VertexShader.vertexshader", "SimpleFragmentShader.fragmentshader" );
 
 
 	static const GLfloat g_vertex_buffer_data[] = { 
 		-1.0f, -1.0f, 0.0f,
 		 1.0f, -1.0f, 0.0f,
-		 0.0f,  1.0f, 0.0f,
+		 1.0f,  1.0f, 0.0f,
+
+		 -1.0f,  1.0f, 0.0f,
+		 1.0f,  1.0f, 0.0f,
+		 -1.0f,  -1.0f, 0.0f,
 	};
+
+
 
 	GLuint vertexbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+
+
 	do{
 
-		// Clear the screen
-		glClear( GL_COLOR_BUFFER_BIT );
 
-		// Use our shader
-		glUseProgram(programID);
+
+	// launch compute shaders!
+	    glUseProgram(ray_program);
+	    glDispatchCompute((GLuint)tex_w, (GLuint)tex_h, 1);
+
+	  
+	  // make sure writing to image has finished before read
+	  glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+	  
+	   // normal drawing pass
+	    glClear(GL_COLOR_BUFFER_BIT);
+	    glUseProgram(programID);
+	    glBindVertexArray(VertexArrayID);
+	    glActiveTexture(GL_TEXTURE0);
+	    glBindTexture(GL_TEXTURE_2D, tex_output);
+	    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	  
+	  
+
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
@@ -96,7 +173,8 @@ int main( void )
 		);
 
 		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
+		//glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
+		//glDrawArrays(GL_TRIANGLES, 3, 6);
 
 		glDisableVertexAttribArray(0);
 
