@@ -22,6 +22,9 @@ void main() {
   vec3 sphere_c = vec3(0.0, 0.0, -10.0);
   float sphere_r = 1.0;
 
+
+
+  //hit cirle
   vec3 omc = ray_o - sphere_c;
   float b = dot(ray_d, omc);
   float c = dot(omc, omc) - sphere_r * sphere_r;
@@ -35,5 +38,5 @@ void main() {
 
   
   // output to a specific pixel in the image
-  imageStore(img_output, pixel_coords, pixel);
+  imageStore(img_output, pixel_coords, vec3(1,0,0,1));
 }

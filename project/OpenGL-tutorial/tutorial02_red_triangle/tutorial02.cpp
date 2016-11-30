@@ -56,14 +56,11 @@ int main( void )
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
-
 
 
 	// dimensions of the image
 	int tex_w = 512, tex_h = 512;
+
 	GLuint tex_output;
 	glGenTextures(1, &tex_output);
 	glActiveTexture(GL_TEXTURE0);
@@ -75,6 +72,20 @@ int main( void )
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, tex_w, tex_h, 0, GL_RGBA, GL_FLOAT,
 	 NULL);
 	glBindImageTexture(0, tex_output, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+
+
+	GLuint FramebufferName = 0;
+	glGenFramebuffers(1, &FramebufferName);
+	glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, tex_output, 0);
+	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+	glDrawBuffers(1, DrawBuffers);
+
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	return false;
+
+
 
 	int work_grp_size[3];
 	int work_grp_cnt[3];
@@ -112,13 +123,12 @@ int main( void )
 	glLinkProgram(ray_program);
 	// check for linking errors and validate program as per normal here
 
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
 
 
-	// Create and compile our GLSL program from the shaders 
-	GLuint programID = LoadShaders( "VertexShader.vertexshader", "SimpleFragmentShader.fragmentshader" );
-
-
-	static const GLfloat g_vertex_buffer_data[] = { 
+	static const GLfloat g_vertex_buffer_data[] = {  // quad covering screen
 		-1.0f, -1.0f, 0.0f,
 		 1.0f, -1.0f, 0.0f,
 		 1.0f,  1.0f, 0.0f,
@@ -130,10 +140,18 @@ int main( void )
 
 
 
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0,0,1024,768);
+
 	GLuint vertexbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+	// Create and compile our GLSL program from the shaders 
+	GLuint programID = LoadShaders( "SimpleVertexShader.vertexshader", "FragShader.glsl" );
+	GLuint texID = glGetUniformLocation(programID, "tex_output");
+	GLuint timeID = glGetUniformLocation(programID, "time");
 
 
 
@@ -173,8 +191,13 @@ int main( void )
 		);
 
 		// Draw the triangle !
-		//glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
-		//glDrawArrays(GL_TRIANGLES, 3, 6);
+		glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
+		glDrawArrays(GL_TRIANGLES, 3, 6);
+
+
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0,0,1024,768);
 
 		glDisableVertexAttribArray(0);
 
