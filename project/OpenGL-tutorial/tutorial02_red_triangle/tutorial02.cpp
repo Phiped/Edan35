@@ -2,6 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
 // Include GLEW
 #include <GL/glew.h>
 
@@ -14,6 +19,33 @@ GLFWwindow* window;
 using namespace glm;
 
 #include <common/shader.hpp>
+
+//#include "project_utilities.h";
+
+class UTIL {
+
+public:
+	static std::string readFile(const char *filePath) {
+		std::string content;
+		std::ifstream fileStream(filePath, std::ios::in);
+
+		if (!fileStream.is_open()) {
+			std::cerr << "Could not read file " << filePath << ". File does not exist." << std::endl;
+			return "";
+		}
+
+		std::string line = "";
+		while (!fileStream.eof()) {
+			std::getline(fileStream, line);
+			content.append(line + "\n");
+		}
+
+		fileStream.close();
+		return content;
+	}
+
+};
+
 
 GLuint genComputeProg() {
 	GLuint texHandle;
@@ -43,20 +75,23 @@ GLuint genComputeProg() {
 	// gl_GlobalInvocationID is a uvec3 variable giving the global ID of the thread,
 	// gl_LocalInvocationID is the local index within the work group, and
 	// gl_WorkGroupID is the work group's index
-	const char *csSrc[] = {
-		"#version 430\n",
-		"uniform float roll;\
-         uniform image2D destTex;\
-         layout (local_size_x = 16, local_size_y = 16) in;\
-         void main() {\
-             ivec2 storePos = ivec2(gl_GlobalInvocationID.xy);\
-             float localCoef = length(vec2(ivec2(gl_LocalInvocationID.xy)-8)/8.0);\
-             float globalCoef = sin(float(gl_WorkGroupID.x+gl_WorkGroupID.y)*0.1 + roll)*0.5;\
-             imageStore(destTex, storePos, vec4(1.0-globalCoef*localCoef, 0.0, 0.0, 0.0));\
-         }"
-	};
+	//const char *csSrc[] = {
+	//	"#version 430\n",
+	//	"uniform float roll;\
+ //        uniform image2D destTex;\
+ //        layout (local_size_x = 16, local_size_y = 16) in;\
+ //        void main() {\
+ //            ivec2 storePos = ivec2(gl_GlobalInvocationID.xy);\
+ //            float localCoef = length(vec2(ivec2(gl_LocalInvocationID.xy)-8)/8.0);\
+ //            float globalCoef = sin(float(gl_WorkGroupID.x+gl_WorkGroupID.y)*0.1 + roll)*0.5;\
+ //            imageStore(destTex, storePos, vec4(1.0-globalCoef*localCoef, 0.0, 0.0, 0.0));\
+ //        }"
+	//};
+	std::string path = "mongoshader.glsl";
+	const char * csSrc = UTIL::readFile(path.c_str()).c_str();
+	printf(csSrc);
 
-	glShaderSource(cs, 2, csSrc, NULL);
+	glShaderSource(cs, 2, &csSrc, NULL);
 	glCompileShader(cs);
 	int rvalue;
 	glGetShaderiv(cs, GL_COMPILE_STATUS, &rvalue);
@@ -165,6 +200,9 @@ int main(void)
 		glUseProgram(computeHandle);
 		glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)frame++*0.01f);
 		glDispatchCompute(512 / 16, 512 / 16, 1); // 512^2 threads in blocks of 16^2
+
+		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+
 
 		glUseProgram(programID);
 		//glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
