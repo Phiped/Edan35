@@ -63,18 +63,6 @@ static GLuint genComputeProg() {
 	//gl_GlobalInvocationID is a uvec3 variable giving the global ID of the thread,
 	//gl_LocalInvocationID is the local index within the work group, and
 	//gl_WorkGroupID is the work group's index
-	//const char *csSrc[] = {
-	//	"#version 430\n",
-	//	"uniform float roll;\
-	//	        uniform image2D destTex;\
- //       layout (local_size_x = 16, local_size_y = 16) in;\
- //       void main() {\
- //           ivec2 storePos = ivec2(gl_GlobalInvocationID.xy);\
- //           float localCoef = length(vec2(ivec2(gl_LocalInvocationID.xy)-8)/8.0);\
- //           float globalCoef = sin(float(gl_WorkGroupID.x+gl_WorkGroupID.y)*0.1 + roll)*0.5;\
- //           imageStore(destTex, storePos, vec4(1.0-globalCoef*localCoef, 0.0, 0.0, 0.0));\
- //       }"
-	//};
 
 	std::string path = "computeshader.glsl";
 	std::string compShader;
@@ -92,14 +80,6 @@ static GLuint genComputeProg() {
 	glShaderSource(cs, 1, &FragmentSourcePointer, NULL);
 	glCompileShader(cs);
 
-
-	//std::string path = "mongoshader.glsl";
-	//std::string result = readFile(compShader.c_str());
-	//const char *csSrc = compShader.c_str();
-	//std::cout << csSrc;
-
-	//glShaderSource(cs, 2, &csSrc, NULL);
-	//glCompileShader(cs);
 	int rvalue;
 	glGetShaderiv(cs, GL_COMPILE_STATUS, &rvalue);
 	if (!rvalue) {

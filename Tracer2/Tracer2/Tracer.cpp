@@ -85,14 +85,26 @@ int main(void)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
 	GLint computeHandle = genComputeProg();
-	int frame = 0;
+	double lastTime = glfwGetTime();
+
+	int nbFrames = 0;
 	do {
+		double currentTime = glfwGetTime();
+		nbFrames++;
+		if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
+											 // printf and reset timer
+			printf("%f ms/frame, %f FPS\n", 1000.0 / double(nbFrames), double(nbFrames));
+			nbFrames = 0;
+			lastTime += 1.0;
+		}
+
+
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// Use our shader
 		glUseProgram(computeHandle);
-		glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)frame++*0.01f);
+		//glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)frame++*0.01f);
 		glDispatchCompute(512 / 16, 512 / 16, 1); // 512^2 threads in blocks of 16^2
 
 		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
