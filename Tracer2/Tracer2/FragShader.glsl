@@ -6,7 +6,6 @@ uniform sampler2D srcTex;
 out vec4 color;
 
 void main(){
-	vec2 res = tex_coords+vec2(1,1)/2.0;
+	vec2 res = tex_coords * 0.5 + 0.5;
 	color = texture(srcTex, res);
-	//color = vec4(c, c, c, 1.0);
 }

@@ -108,7 +108,7 @@ static GLuint genComputeProg() {
 		GLsizei length;
 		glGetShaderInfoLog(cs, 10239, &length, log);
 		fprintf(stderr, "Compiler log:\n%s\n", log);
-		exit(40);
+		//exit(40);
 	}
 	glAttachShader(progHandle, cs);
 
