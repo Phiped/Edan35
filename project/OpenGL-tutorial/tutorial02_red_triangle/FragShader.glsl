@@ -1,11 +1,12 @@
 #version 430
 in vec2 tex_coords;
 
-layout(RGBA32F) uniform image2D img_input;
+uniform sampler2D srcTex;
 
-out vec3 color;
+out vec4 color;
 
 void main(){
-	tex_coords = tex_coords+vec2(1,1))/2.0;
-	color = imageLoad(img_input,tex_coords.xy);
+	vec2 res = tex_coords+vec2(1,1)/2.0;
+	color = texture(srcTex, res);
+	//color = vec4(c, c, c, 1.0);
 }

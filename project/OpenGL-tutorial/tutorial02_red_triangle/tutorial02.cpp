@@ -15,16 +15,89 @@ using namespace glm;
 
 #include <common/shader.hpp>
 
-int main( void )
+GLuint genComputeProg() {
+	GLuint texHandle;
+	glGenTextures(1, &texHandle);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texHandle);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_R32F, 512, 512, 0, GL_RED, GL_FLOAT, NULL);
+
+	// Because we're also using this tex as an image (in order to write to it),
+	// we bind it to an image unit as well
+	glBindImageTexture(0, texHandle, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_R32F);
+
+
+
+	// Creating the compute shader, and the program object containing the shade
+
+
+
+	GLuint progHandle = glCreateProgram();
+	GLuint cs = glCreateShader(GL_COMPUTE_SHADER);
+
+	// In order to write to a texture, we have to introduce it as image2D.
+	// local_size_x/y/z layout variables define the work group size.
+	// gl_GlobalInvocationID is a uvec3 variable giving the global ID of the thread,
+	// gl_LocalInvocationID is the local index within the work group, and
+	// gl_WorkGroupID is the work group's index
+	const char *csSrc[] = {
+		"#version 430\n",
+		"uniform float roll;\
+         uniform image2D destTex;\
+         layout (local_size_x = 16, local_size_y = 16) in;\
+         void main() {\
+             ivec2 storePos = ivec2(gl_GlobalInvocationID.xy);\
+             float localCoef = length(vec2(ivec2(gl_LocalInvocationID.xy)-8)/8.0);\
+             float globalCoef = sin(float(gl_WorkGroupID.x+gl_WorkGroupID.y)*0.1 + roll)*0.5;\
+             imageStore(destTex, storePos, vec4(1.0-globalCoef*localCoef, 0.0, 0.0, 0.0));\
+         }"
+	};
+
+	glShaderSource(cs, 2, csSrc, NULL);
+	glCompileShader(cs);
+	int rvalue;
+	glGetShaderiv(cs, GL_COMPILE_STATUS, &rvalue);
+	if (!rvalue) {
+		fprintf(stderr, "Error in compiling the compute shader\n");
+		GLchar log[10240];
+		GLsizei length;
+		glGetShaderInfoLog(cs, 10239, &length, log);
+		fprintf(stderr, "Compiler log:\n%s\n", log);
+		exit(40);
+	}
+	glAttachShader(progHandle, cs);
+
+	glLinkProgram(progHandle);
+	glGetProgramiv(progHandle, GL_LINK_STATUS, &rvalue);
+	if (!rvalue) {
+		fprintf(stderr, "Error in linking compute shader program\n");
+		GLchar log[10240];
+		GLsizei length;
+		glGetProgramInfoLog(progHandle, 10239, &length, log);
+		fprintf(stderr, "Linker log:\n%s\n", log);
+		exit(41);
+	}
+	glUseProgram(progHandle);
+
+	glUniform1i(glGetUniformLocation(progHandle, "destTex"), 0);
+
+	return progHandle;
+}
+
+
+int main(void)
 {
 	// Initialise GLFW
-	if( !glfwInit() )
+	if (!glfwInit())
 	{
-		fprintf( stderr, "Failed to initialize GLFW\n" );
+		fprintf(stderr, "Failed to initialize GLFW\n");
 		getchar();
 		return -1;
 	}
-
+	
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -32,9 +105,9 @@ int main( void )
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow(512, 512, "Raytracing", NULL, NULL);
-	if( window == NULL ){
-		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
+	window = glfwCreateWindow(1024, 768, "Tutorial 02 - Red triangle", NULL, NULL);
+	if (window == NULL) {
+		fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
 		getchar();
 		glfwTerminate();
 		return -1;
@@ -56,126 +129,47 @@ int main( void )
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
-
-
-	// dimensions of the image
-	int tex_w = 512, tex_h = 512;
-
-	GLuint tex_output;
-	glGenTextures(1, &tex_output);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, tex_output);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, tex_w, tex_h, 0, GL_RGBA, GL_FLOAT,
-	 NULL);
-	glBindImageTexture(0, tex_output, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
-
-
-	GLuint FramebufferName = 0;
-	glGenFramebuffers(1, &FramebufferName);
-	glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
-
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, tex_output, 0);
-	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
-	glDrawBuffers(1, DrawBuffers);
-
-	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	return false;
-
-
-
-	int work_grp_size[3];
-	int work_grp_cnt[3];
-	int work_grp_inv;
-	const char* the_ray_shader_string = "computeShader.glsl";
-
-
-	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 0, &work_grp_cnt[0]);
-	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 1, &work_grp_cnt[1]);
-	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 2, &work_grp_cnt[2]);
-
-	printf("max global (total) work group size x:%i y:%i z:%i\n",
-	  work_grp_size[0], work_grp_size[1], work_grp_size[2]);
-
-	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 0, &work_grp_size[0]);
-	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 1, &work_grp_size[1]);
-	glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 2, &work_grp_size[2]);
-
-	printf("max local (in one shader) work group sizes x:%i y:%i z:%i\n",
-	  work_grp_size[0], work_grp_size[1], work_grp_size[2]);
-
-	glGetIntegerv(GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &work_grp_inv);
-	printf("max local work group invocations %i\n", work_grp_inv);
-
-
-
-
-	GLuint ray_shader = glCreateShader(GL_COMPUTE_SHADER);
-	glShaderSource(ray_shader, 1, &the_ray_shader_string, NULL);
-	glCompileShader(ray_shader);
-	// check for compilation errors as per normal here
-
-	GLuint ray_program = glCreateProgram();
-	glAttachShader(ray_program, ray_shader);
-	glLinkProgram(ray_program);
-	// check for linking errors and validate program as per normal here
-
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
+	// Create and compile our GLSL program from the shaders
+	GLuint programID = LoadShaders("VertexShader.glsl", "FragShader.glsl");
 
-	static const GLfloat g_vertex_buffer_data[] = {  // quad covering screen
+	glUniform1i(glGetUniformLocation(programID, "srcTex"), 0);
+
+
+	static const GLfloat g_vertex_buffer_data[] = {
 		-1.0f, -1.0f, 0.0f,
-		 1.0f, -1.0f, 0.0f,
-		 1.0f,  1.0f, 0.0f,
-
-		 -1.0f,  1.0f, 0.0f,
-		 1.0f,  1.0f, 0.0f,
-		 -1.0f,  -1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		1.0f,  1.0f, 0.0f,
+		-1.0f,  1.0f, 0.0f,
+		1.0f,  1.0f, 0.0f,
+		-1.0f,  -1.0f, 0.0f,
 	};
-
-
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glViewport(0,0,1024,768);
 
 	GLuint vertexbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
-	// Create and compile our GLSL program from the shaders 
-	GLuint programID = LoadShaders( "SimpleVertexShader.vertexshader", "FragShader.glsl" );
-	GLuint texID = glGetUniformLocation(programID, "tex_output");
-	GLuint timeID = glGetUniformLocation(programID, "time");
 
+	GLint computeHandle = genComputeProg();
+	int frame = 0;
+	do {
+		//printf("\n%d",frame);
+		// Clear the screen
+		glClear(GL_COLOR_BUFFER_BIT);
 
+		// Use our shader
+		glUseProgram(computeHandle);
+		glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)frame++*0.01f);
+		glDispatchCompute(512 / 16, 512 / 16, 1); // 512^2 threads in blocks of 16^2
 
-	do{
-
-
-
-	// launch compute shaders!
-	    glUseProgram(ray_program);
-	    glDispatchCompute((GLuint)tex_w, (GLuint)tex_h, 1);
-
-	  
-	  // make sure writing to image has finished before read
-	  glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
-	  
-	   // normal drawing pass
-	    glClear(GL_COLOR_BUFFER_BIT);
-	    glUseProgram(programID);
-	    glBindVertexArray(VertexArrayID);
-	    glActiveTexture(GL_TEXTURE0);
-	    glBindTexture(GL_TEXTURE_2D, tex_output);
-	    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	  
-	  
+		glUseProgram(programID);
+		//glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		//swapBuffers();
+		//checkErrors("Draw screen");
 
 
 		// 1rst attribute buffer : vertices
@@ -193,21 +187,15 @@ int main( void )
 		// Draw the triangle !
 		glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
 		glDrawArrays(GL_TRIANGLES, 3, 6);
-
-
-
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glViewport(0,0,1024,768);
-
-		glDisableVertexAttribArray(0);
+		//glDisableVertexAttribArray(0);
 
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
 	} // Check if the ESC key was pressed or the window was closed
-	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-		   glfwWindowShouldClose(window) == 0 );
+	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+		glfwWindowShouldClose(window) == 0);
 
 	// Cleanup VBO
 	glDeleteBuffers(1, &vertexbuffer);
@@ -217,6 +205,6 @@ int main( void )
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 
+
 	return 0;
 }
-

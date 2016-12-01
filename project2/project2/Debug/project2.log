@@ -1,0 +1,20 @@
+﻿project2.obj : error LNK2011: precompiled object not linked in; image may not run
+project2.obj : error LNK2019: unresolved external symbol __imp__glClear@4 referenced in function _main
+project2.obj : error LNK2019: unresolved external symbol __imp__glClearColor@16 referenced in function _main
+project2.obj : error LNK2019: unresolved external symbol __imp__glDrawArrays@12 referenced in function _main
+project2.obj : error LNK2019: unresolved external symbol __imp__glewInit@0 referenced in function _main
+project2.obj : error LNK2019: unresolved external symbol "unsigned int __cdecl LoadShaders(char const *,char const *)" (?LoadShaders@@YAIPBD0@Z) referenced in function _main
+project2.obj : error LNK2001: unresolved external symbol __imp____glewBindBuffer
+project2.obj : error LNK2001: unresolved external symbol __imp____glewBufferData
+project2.obj : error LNK2001: unresolved external symbol __imp____glewDeleteBuffers
+project2.obj : error LNK2001: unresolved external symbol __imp____glewGenBuffers
+project2.obj : error LNK2001: unresolved external symbol __imp____glewDeleteProgram
+project2.obj : error LNK2001: unresolved external symbol __imp____glewDisableVertexAttribArray
+project2.obj : error LNK2001: unresolved external symbol __imp____glewEnableVertexAttribArray
+project2.obj : error LNK2001: unresolved external symbol __imp____glewUseProgram
+project2.obj : error LNK2001: unresolved external symbol __imp____glewVertexAttribPointer
+project2.obj : error LNK2001: unresolved external symbol __imp____glewBindVertexArray
+project2.obj : error LNK2001: unresolved external symbol __imp____glewDeleteVertexArrays
+project2.obj : error LNK2001: unresolved external symbol __imp____glewGenVertexArrays
+project2.obj : error LNK2001: unresolved external symbol __imp__glewExperimental
+C:\Users\Tobbe\Desktop\edan35\project2\Debug\project2.exe : fatal error LNK1120: 19 unresolved externals
