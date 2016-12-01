@@ -1,6 +1,6 @@
 #version 430
 layout(local_size_x = 16, local_size_y = 16) in;
-uniform image2D dest_tex; //
+uniform image2D dest_tex; //layout(rgba32f, binding = 0) 
 
 void main() {
   // base pixel colour for image
@@ -24,7 +24,7 @@ void main() {
 	float bsqmc = b * b - c;
 	// hit one or both sides
 	if (bsqmc >= 0.0) {
-	  pixel = vec4(0.4, 0.4, 1.0, 1.0);
+	  pixel = vec4(0.4, 1.0, 1.0, 1.0);
 }
   
   // output to a specific pixel in the image

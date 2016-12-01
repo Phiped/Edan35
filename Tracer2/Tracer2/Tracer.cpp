@@ -87,7 +87,6 @@ int main(void)
 	GLint computeHandle = genComputeProg();
 	int frame = 0;
 	do {
-		//printf("\n%d",frame);
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT);
 
@@ -100,8 +99,7 @@ int main(void)
 
 
 		glUseProgram(programID);
-		//glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-		//swapBuffers();
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 		//checkErrors("Draw screen");
 
 
