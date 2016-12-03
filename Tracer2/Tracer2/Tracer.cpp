@@ -36,7 +36,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow(1024, 768, "Tutorial 02 - Red triangle", NULL, NULL);
+	window = glfwCreateWindow(512, 512, "Simple Ray Tracer", NULL, NULL);
 	if (window == NULL) {
 		fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
 		getchar();
@@ -88,9 +88,11 @@ int main(void)
 	double lastTime = glfwGetTime();
 
 	int nbFrames = 0;
+	int totFrames = 0;
 	do {
 		double currentTime = glfwGetTime();
 		nbFrames++;
+		totFrames++;
 		if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
 											 // printf and reset timer
 			printf("%f ms/frame, %f FPS\n", 1000.0 / double(nbFrames), double(nbFrames));
@@ -104,7 +106,7 @@ int main(void)
 
 		// Use our shader
 		glUseProgram(computeHandle);
-		//glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)frame++*0.01f);
+		glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)totFrames++*0.001f);
 		glDispatchCompute(512 / 16, 512 / 16, 1); // 512^2 threads in blocks of 16^2
 
 		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
