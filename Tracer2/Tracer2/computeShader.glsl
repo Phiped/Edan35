@@ -22,6 +22,7 @@ struct Plane{
 	vec3 point;
 	vec3 normal;
 	vec3 color;
+	float reflectivity;
 };
 
 struct hit_info{
@@ -36,6 +37,8 @@ struct hit_info{
 const int NUM_BOXES = 1;
 const int NUM_SPHERES = 1;
 const int NUM_PLANES = 2;
+
+const vec3 sun_location = vec3 (4.0, 3.0, 3.0);
 
 
 uniform Sphere spheres[NUM_SPHERES];
@@ -71,17 +74,13 @@ hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 	float discriminant = pow(b, 2) - (4 * a * c);
 	hit_info info;
 	
-	if (discriminant <= 0){
-		info.hit = false;
-		return info;
-	} else{
-		info.hit = true;
-		float t = (- b - sqrt(discriminant)) / (2 * a);
-		info.impact_point = vec3(origin.x + dir.x * t, origin.y + dir.y * t, origin.z + dir.z * t);
-		info.impact_normal = normalize(info.impact_point - s1.center);
-		info.color = s1.color;
-		return info;
-	}
+	info.hit = discriminant > 0;
+	float t = (- b - sqrt(discriminant)) / (2 * a);
+	info.impact_point = vec3(origin.x + dir.x * t, origin.y + dir.y * t, origin.z + dir.z * t);
+	info.impact_normal = normalize(info.impact_point - s1.center);
+	info.color = s1.color;
+	info.reflectivity = s1.reflectivity;
+	return info;
 	
 	
 };
@@ -93,6 +92,8 @@ hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 	toReturn.impact_normal = p1.normal;
 	toReturn.color = p1.color;
 	toReturn.hit = t > 0;
+	toReturn.reflectivity = p1.reflectivity;
+
 	return toReturn;
 };
 
@@ -117,7 +118,7 @@ hit_info hitBox(Box b, vec3 origin, vec3 target) {
 
 
 hit_info closest_hit(vec3 origin, vec3 target){
-	float closest_dist = 100000000000000.0;
+	float closest_dist = 1000000000.0;
 	
 	hit_info closest;
 	hit_info current;
@@ -156,6 +157,39 @@ hit_info closest_hit(vec3 origin, vec3 target){
 	return closest;
 };
 
+vec4 light_intersection(hit_info info){
+	hit_info closest = closest_hit(info.impact_point, sun_location);
+	
+	//determine shadow
+	
+	float strength = 0.8;
+	float dist_to_sun = length(sun_location - info.impact_point);
+	if (length(closest.impact_point - info.impact_point) < dist_to_sun){
+		strength = 0;
+	}
+	// return vec4(info.color, 0.0);
+	return vec4(info.color * (0.2 + (strength / pow(dist_to_sun* 0.2f, 2))), 0.0);;
+};
+
+vec4 find_color(vec3 rayStart,vec3 rayDir) {
+	vec4 finalColor=vec4(0.0);
+	float frac=1.0; // fraction of my color to add to finalColor
+	for (int raybounce=0;raybounce<5;raybounce++) {
+		hit_info i = closest_hit(rayStart,rayStart + rayDir); // geometric search
+		vec4 local = light_intersection(i); // diffuse + specular
+		// i.reflectivity = 0.5;
+		finalColor += local*(1.0-i.reflectivity)*frac;
+		frac *= i.reflectivity; // <- scale down all subsequent rays
+		rayStart=i.impact_point; // change ray origin for next bounce
+		rayDir=reflect(rayDir,i.impact_normal);
+	}
+	return finalColor;
+};
+
+
+
+
+
 
 void main() {
   // base pixel colour for image
@@ -163,36 +197,26 @@ void main() {
   // get index in global work group i.e x,y position
   ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
   
-  
-	float max_x = 5.0;
+	
+	float max_x = 7.0;
 	float max_y = 5.0;
-	//float max_z = 5.0;
+	float max_z = 5.0;
+	// float max_z = 0;
 	ivec2 dims = imageSize(dest_tex); // fetch image dimensions
 	float x = (float(pixel_coords.x * 2 - dims.x) / dims.x);
 	float y = (float(pixel_coords.y * 2 - dims.y) / dims.y);
+	float z = (float(pixel_coords.y * 2 - dims.y) / dims.y);
 	
 	
-	
-	// spheres[0] = Sphere(vec3(1.0, 1.0, -6.0) + vec3(0.5 * sin(roll), 0.5 * cos(roll), 0.5), 1.0, vec3(0.4, 0.4, 1.0));
-	// planes[0] = Plane(vec3(-4.0, -4.0, -7.0), vec3(0.0, 0.0, 1), vec3(1, 1, 0.5));
-	// s1.radius = 1.0;
-	// s1.center = vec3(1.0, 1.0, -6) + vec3(0.5 * sin(roll), 0.5 * cos(roll), 0.5);
-	// s1.color = vec3(0.4, 0.4, 1.0); // mostly blue
-	
-	// Plane p1;
-	// p1.point = vec3(-4.0, -4.0, -7.0);
-	// p1.normal = vec3(0.0, 0.0, 1);
-	// p1.color = vec3(1, 1, 0.5);
-	
-	vec3 light_source = vec3 (4.0, 1.0, 1.0);
 
-	vec3 ray_o = vec3(x * max_x, y * max_y, 0.0);
-	vec3 ray_d = ray_o + vec3(0.0, 0.0, -1.0); // ortho
+	vec3 ray_o = vec3(x * max_x, y * max_y, 3 + z * max_z) + vec3(1.0, 1.0, 1.0);
+	vec3 ray_d = ray_o + vec3(0.0, 1.0, -1.0);
 	
 	
-	hit_info res = closest_hit(ray_o, ray_d);
-	
-	pixel = vec4(res.color, 0.0);
+	//hit_info res = ;
+
+	// pixel = vec4(closest_hit(ray_o, ray_d).color, 0.0);
+	pixel = find_color(ray_o, ray_d - ray_o);
 
   
   // output to a specific pixel in the image
