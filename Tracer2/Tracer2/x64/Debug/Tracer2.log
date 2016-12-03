@@ -1,3 +1,6 @@
 ﻿  Tracer.cpp
-  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Tracer2\x64\Debug\Tracer2.exe
-  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Tracer2\x64\Debug\Tracer2.pdb (Full PDB)
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\tracer.cpp(119): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\tracer.cpp(121): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\tracer.cpp(125): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.exe
+  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.pdb (Full PDB)

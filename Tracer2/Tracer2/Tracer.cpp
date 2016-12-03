@@ -14,10 +14,9 @@
 #include <GLFW/glfw3.h>
 GLFWwindow* window;
 
-//using namespace std;
 #include "shader.hpp"
 #include "utils.h"
-//#include "shader.cpp"
+#include <math.h>
 
 int main(void)
 {
@@ -36,7 +35,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow(512, 512, "Simple Ray Tracer", NULL, NULL);
+	window = glfwCreateWindow(1024, 1024, "Simple Ray Tracer", NULL, NULL);
 	if (window == NULL) {
 		fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
 		getchar();
@@ -107,7 +106,35 @@ int main(void)
 		// Use our shader
 		glUseProgram(computeHandle);
 		glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)totFrames++*0.001f);
-		glDispatchCompute(512 / 16, 512 / 16, 1); // 512^2 threads in blocks of 16^2
+
+
+		// add all of our objects
+
+		//spheres[0] = Sphere(vec3(1.0, 1.0, -6.0) + vec3(0.5 * sin(roll), 0.5 * cos(roll), 0.5), 1.0, vec3(0.4, 0.4, 1.0));
+		//planes[0] = Plane(vec3(-4.0, -4.0, -7.0), vec3(0.0, 0.0, 1), vec3(1, 1, 0.5));
+
+
+
+
+		glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].center"), 1.0 + sin(totFrames++*0.001f), 1.0 + cos(totFrames++*0.001f), 0.0);
+		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].radius"), 1.0);
+		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].reflectivity"), 0.4);
+		glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].color"), 0.4, 0.4, 1.0);
+
+		glUniform3f(glGetUniformLocation(computeHandle, "planes[0].point"), 0.0, 0.0, -10.0);
+		glUniform3f(glGetUniformLocation(computeHandle, "planes[0].normal"), 0.0, 0.0, 1.0);
+		glUniform3f(glGetUniformLocation(computeHandle, "planes[0].color"), 0.9, 0.9, 0.5);
+
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[1].point"), 0.0, 0.0, -10.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[1].normal"), 0.0, 0.0, 1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[1].color"), 0.9, 0.5, 0.5);
+
+
+
+
+		//glUniform3
+
+		glDispatchCompute(1024 / 16, 1024 / 16, 1); // 512^2 threads in blocks of 16^2
 
 		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
