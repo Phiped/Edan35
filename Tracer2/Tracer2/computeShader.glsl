@@ -10,12 +10,14 @@ struct Sphere{
 	float radius;
 	vec3 color;
 	float reflectivity;
+	bool refracting;
 };
 
 struct Box{
 	vec3 min;
 	vec3 max;
 	vec3 color;
+	float reflectivity;
 };
 
 struct Plane{
@@ -34,9 +36,12 @@ struct hit_info{
 };
 
 
-const int NUM_BOXES = 1;
-const int NUM_SPHERES = 1;
-const int NUM_PLANES = 2;
+#define NUM_PLANES 4
+#define NUM_SPHERES 1
+#define NUM_BOXES 1
+
+
+#define NUM_BOUNCES 3
 
 const vec3 sun_location = vec3 (4.0, 3.0, 3.0);
 
@@ -44,25 +49,6 @@ const vec3 sun_location = vec3 (4.0, 3.0, 3.0);
 uniform Sphere spheres[NUM_SPHERES];
 uniform Box boxes[NUM_BOXES];
 uniform Plane planes[NUM_PLANES];
-
-// vec4 find_color(vec3 rayStart,vec3 rayDir) {
-	// vec4 finalColor=vec4(0.0);
-	// float frac=1.0; // fraction of my color to add to finalColor
-	// for (int raybounce=0;raybounce<max_bounces;raybounce++) {
-		// ray_intersection i = closest_hit(rayStart,rayDir); // geometric search
-		// vec4 local = light_intersection(i); // diffuse + specular
-		// finalColor += local*(1.0-i.mirror)*frac;
-		// frac *= i.mirror; // <- scale down all subsequent rays
-		// if (frac<0.05) break; // give up--not much impact on final color
-		// rayStart=i.hit_location; // change ray origin for next bounce
-		// rayDir=reflect(rayDir,i.normal);
-	// }x
-	// return finalColor;
-// }
-
-
-
-
 
 
 hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
@@ -77,7 +63,9 @@ hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 	info.hit = discriminant > 0;
 	float t = (- b - sqrt(discriminant)) / (2 * a);
 	info.impact_point = vec3(origin.x + dir.x * t, origin.y + dir.y * t, origin.z + dir.z * t);
-	info.impact_normal = normalize(info.impact_point - s1.center);
+	
+	
+	info.impact_normal = info.impact_point - s1.center;
 	info.color = s1.color;
 	info.reflectivity = s1.reflectivity;
 	return info;
@@ -98,27 +86,47 @@ hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 };
 
 hit_info hitBox(Box b, vec3 origin, vec3 target) {
+
 	vec3 dir = target - origin;
-	vec3 tMin = (b.min - origin) / dir;
-	vec3 tMax = (b.max - origin) / dir;
-	vec3 t1 = min(tMin, tMax);
-	vec3 t2 = max(tMin, tMax);
-	float tNear = max(max(t1.x, t1.y), t1.z);
-	float tFar = min(min(t2.x, t2.y), t2.z);
-	hit_info toReturn;
-	if (tFar < tNear){
-		toReturn.hit = false;
-		return toReturn;
+	float tx1 = (b.min.x - origin.x) / dir.x;
+	float tx2 = (b.max.x - origin.x) / dir.x;
+	
+	float tmin = min(tx1, tx2);
+	float tmax = max(tx1, tx2);
+	
+	float ty1 = (b.min.y - origin.y) / dir.y;
+	float ty2 = (b.max.y - origin.y) / dir.y;
+	
+	tmin = max(tmin, min(ty1, ty2));
+	tmax = min(tmax, max(ty1, ty2));
+	
+	float tz1 = (b.min.z - origin.z) / dir.z;
+	float tz2 = (b.max.z - origin.z) / dir.z;
+	
+	tmin = max(tmin, min(tz1, tz2));
+	tmax = min(tmax, max(tz1, tz2));
+	
+	hit_info info;
+	info.hit = tmin < tmax;
+	info.color = b.color;
+	info.impact_point = origin + dir * tmin;
+	
+	if (tmin == min(tz1, tz2)){
+		info.impact_normal = vec3(0.0, 0.0, 1.0);
+	} else if (tmin == min(tx1, tx2)) {
+		info.impact_normal = vec3(1.0, 0.0, 0.0);
 	} else{
-		toReturn.hit = true;
-		toReturn.impact_point = origin + tNear * dir;
-		return toReturn;
+		info.impact_normal = vec3(0.0, 1.0, 0.0);
 	}
+	
+	info.reflectivity = b.reflectivity;
+	
+	return info;
 };
 
 
 hit_info closest_hit(vec3 origin, vec3 target){
-	float closest_dist = 1000000000.0;
+	float closest_dist = 1000000.0;
 	
 	hit_info closest;
 	hit_info current;
@@ -133,16 +141,16 @@ hit_info closest_hit(vec3 origin, vec3 target){
 		}
 	}
 	
-	// for (int i = 0; i < NUM_BOXES; i++){
-		// current = hitBox(boxes[i], origin, target);
-		// if (current.hit){
-			// float dist = length(current.impact_point - origin);
-			// if (dist < closest_dist){
-				// closest = current;
-				// closest_dist = dist;
-			// }
-		// }
-	// }
+	for (int i = 0; i < NUM_BOXES; i++){
+		current = hitBox(boxes[i], origin, target);
+		if (current.hit){
+			float dist = length(current.impact_point - origin);
+			if (dist < closest_dist){
+				closest = current;
+				closest_dist = dist;
+			}
+		}
+	}
 	
 	for (int i = 0; i < NUM_PLANES; i++){
 		current = hitPlane(planes[i], origin, target);
@@ -154,6 +162,7 @@ hit_info closest_hit(vec3 origin, vec3 target){
 			}
 		}
 	}
+	
 	return closest;
 };
 
@@ -168,13 +177,13 @@ vec4 light_intersection(hit_info info){
 		strength = 0;
 	}
 	// return vec4(info.color, 0.0);
-	return vec4(info.color * (0.2 + (strength / pow(dist_to_sun* 0.2f, 2))), 0.0);;
+	return vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.18f, 2), 0.0);
 };
 
 vec4 find_color(vec3 rayStart,vec3 rayDir) {
 	vec4 finalColor=vec4(0.0);
 	float frac=1.0; // fraction of my color to add to finalColor
-	for (int raybounce=0;raybounce<5;raybounce++) {
+	for (int raybounce=0;raybounce<NUM_BOUNCES;raybounce++) {
 		hit_info i = closest_hit(rayStart,rayStart + rayDir); // geometric search
 		vec4 local = light_intersection(i); // diffuse + specular
 		// i.reflectivity = 0.5;
@@ -206,11 +215,9 @@ void main() {
 	float x = (float(pixel_coords.x * 2 - dims.x) / dims.x);
 	float y = (float(pixel_coords.y * 2 - dims.y) / dims.y);
 	float z = (float(pixel_coords.y * 2 - dims.y) / dims.y);
-	
-	
 
-	vec3 ray_o = vec3(x * max_x, y * max_y, 3 + z * max_z) + vec3(1.0, 1.0, 1.0);
-	vec3 ray_d = ray_o + vec3(0.0, 1.0, -1.0);
+	vec3 ray_o = vec3(x * max_x, y * max_y - 3, 2 + z * max_z) + vec3(1.0, 1.0, 1.0);
+	vec3 ray_d = ray_o + vec3(0.0, 1, -1);
 	
 	
 	//hit_info res = ;
