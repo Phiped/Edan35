@@ -36,20 +36,20 @@ struct hit_info{
 };
 
 
-#define NUM_PLANES 5
+#define NUM_PLANES 6
 #define NUM_SPHERES 1
 #define NUM_BOXES 1
 
 #define M_PI 3.1415926535897932384626433832795
 #define FOV 1.4
 
-#define NUM_BOUNCES 5
+#define NUM_BOUNCES 10
 
 #define BIAS_FACTOR 0.000001f
 
 const vec3 starting_origin = vec3(0.0, -3.0, 0.0);
 
-const vec3 sun_location = vec3 (3.0, 2.0, 3.0);
+uniform vec3 sun_location;
 
 
 uniform Sphere spheres[NUM_SPHERES];
@@ -63,21 +63,22 @@ vec3 getBias(vec3 origin, vec3 target){
 
 
 hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
-	vec3 dir = target - origin;
+	vec3 dir = normalize(target - origin);
+	vec3 dir2 = origin - s1.center;
 	float a = pow(dir.x, 2) + pow(dir.y, 2) + pow(dir.z, 2);
-	float b = 2 * dir.x * (origin.x - s1.center.x) + 2*dir.y*(origin.y - s1.center.y) + 2*dir.z*(origin.z - s1.center.z);
-	float c = pow(s1.center.x, 2) + pow(s1.center.y, 2) + pow(s1.center.z, 2) + pow(origin.x, 2) + pow(origin.y, 2) + pow(origin.z, 2) - 2*(s1.center.x * origin.x + s1.center.y * origin.y + s1.center.z * origin.z) - pow(s1.radius, 2);
+	float b = 2 * (dir.x * dir2.x + dir.y*dir2.y + dir.z*dir2.z);
+	float c = pow(dir2.x, 2) + pow(dir2.y, 2) + pow(dir2.z, 2) - pow(s1.radius,2);
 	
 	float discriminant = pow(b, 2) - (4 * a * c);
 	hit_info info;
 	
-	info.hit = discriminant > 0;
+	info.hit = discriminant >= 0;
 	float t = (- b - sqrt(discriminant)) / (2 * a);
 	info.impact_point = vec3(origin.x + (dir.x * t), origin.y +(dir.y * t), origin.z + (dir.z * t));
 	info.impact_point += getBias(origin, info.impact_point);
 	
 	
-	info.impact_normal = info.impact_point - s1.center;
+	info.impact_normal = normalize(info.impact_point - s1.center);
 	info.color = s1.color;
 	info.reflectivity = s1.reflectivity;
 	return info;
@@ -123,13 +124,16 @@ hit_info hitBox(Box b, vec3 origin, vec3 target) {
 	info.hit = tmin < tmax;
 	info.color = b.color;
 	info.impact_point = origin + dir * tmin;
+	vec3 offset = info.impact_point - ((b.min + b.max) / 2);
 	
-	if (tmin == min(tz1, tz2)){
-		info.impact_normal = vec3(0.0, 0.0, 1.0);
-	} else if (tmin == min(tx1, tx2)) {
-		info.impact_normal = vec3(1.0, 0.0, 0.0);
+	/// Box reflection seems to not be working properly
+	
+	if (abs(offset.x) > abs(offset.y) && abs(offset.x) > abs(offset.z)){
+		info.impact_normal = vec3(normalize(offset.x), 0.0, 0.0);
+	} else if (abs(offset.y) > abs(offset.z)) {
+		info.impact_normal = vec3(0.0, normalize(offset.y), 0.0);
 	} else{
-		info.impact_normal = vec3(0.0, 1.0, 0.0);
+		info.impact_normal = vec3(0.0, 0.0, normalize(offset.z));
 	}
 	
 	info.reflectivity = b.reflectivity;
