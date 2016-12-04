@@ -36,19 +36,30 @@ struct hit_info{
 };
 
 
-#define NUM_PLANES 4
+#define NUM_PLANES 5
 #define NUM_SPHERES 1
 #define NUM_BOXES 1
 
+#define M_PI 3.1415926535897932384626433832795
+#define FOV 1.4
 
-#define NUM_BOUNCES 3
+#define NUM_BOUNCES 5
 
-const vec3 sun_location = vec3 (4.0, 3.0, 3.0);
+#define BIAS_FACTOR 0.000001f
+
+const vec3 starting_origin = vec3(0.0, -3.0, 0.0);
+
+const vec3 sun_location = vec3 (3.0, 2.0, 3.0);
 
 
 uniform Sphere spheres[NUM_SPHERES];
 uniform Box boxes[NUM_BOXES];
 uniform Plane planes[NUM_PLANES];
+
+
+vec3 getBias(vec3 origin, vec3 target){
+	return (target - origin) * BIAS_FACTOR;
+}
 
 
 hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
@@ -62,7 +73,8 @@ hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 	
 	info.hit = discriminant > 0;
 	float t = (- b - sqrt(discriminant)) / (2 * a);
-	info.impact_point = vec3(origin.x + dir.x * t, origin.y + dir.y * t, origin.z + dir.z * t);
+	info.impact_point = vec3(origin.x + (dir.x * t), origin.y +(dir.y * t), origin.z + (dir.z * t));
+	info.impact_point += getBias(origin, info.impact_point);
 	
 	
 	info.impact_normal = info.impact_point - s1.center;
@@ -77,6 +89,7 @@ hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 	float t = dot(p1.normal, (p1.point - origin)) / dot(p1.normal, (target - origin));
 	hit_info toReturn;
 	toReturn.impact_point = vec3(origin + (t * (target - origin)));
+	toReturn.impact_point += getBias(toReturn.impact_point, origin);
 	toReturn.impact_normal = p1.normal;
 	toReturn.color = p1.color;
 	toReturn.hit = t > 0;
@@ -167,17 +180,19 @@ hit_info closest_hit(vec3 origin, vec3 target){
 };
 
 vec4 light_intersection(hit_info info){
-	hit_info closest = closest_hit(info.impact_point, sun_location);
+	vec3 modified =  info.impact_point + (sun_location - info.impact_point)*0.01f;
+
+	hit_info closest = closest_hit(modified, sun_location);
 	
 	//determine shadow
 	
-	float strength = 0.8;
-	float dist_to_sun = length(sun_location - info.impact_point);
-	if (length(closest.impact_point - info.impact_point) < dist_to_sun){
+	float strength = 0.7;
+	float dist_to_sun = length(sun_location - modified);
+	if (length(closest.impact_point - modified) < dist_to_sun){
 		strength = 0;
 	}
-	// return vec4(info.color, 0.0);
-	return vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.18f, 2), 0.0);
+	// return vec4(info.color / pow(dist_to_sun* 0.2f, 2), 0.0);
+	return vec4(info.color * (0.3 + strength) / pow(dist_to_sun* 0.18f, 2), 0.0);
 };
 
 vec4 find_color(vec3 rayStart,vec3 rayDir) {
@@ -186,7 +201,6 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 	for (int raybounce=0;raybounce<NUM_BOUNCES;raybounce++) {
 		hit_info i = closest_hit(rayStart,rayStart + rayDir); // geometric search
 		vec4 local = light_intersection(i); // diffuse + specular
-		// i.reflectivity = 0.5;
 		finalColor += local*(1.0-i.reflectivity)*frac;
 		frac *= i.reflectivity; // <- scale down all subsequent rays
 		rayStart=i.impact_point; // change ray origin for next bounce
@@ -207,25 +221,25 @@ void main() {
   ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
   
 	
-	float max_x = 7.0;
+	float max_x = 5.0;
 	float max_y = 5.0;
-	float max_z = 5.0;
-	// float max_z = 0;
+	
+	// float max_z = 5.0;
 	ivec2 dims = imageSize(dest_tex); // fetch image dimensions
-	float x = (float(pixel_coords.x * 2 - dims.x) / dims.x);
-	float y = (float(pixel_coords.y * 2 - dims.y) / dims.y);
-	float z = (float(pixel_coords.y * 2 - dims.y) / dims.y);
 
-	vec3 ray_o = vec3(x * max_x, y * max_y - 3, 2 + z * max_z) + vec3(1.0, 1.0, 1.0);
-	vec3 ray_d = ray_o + vec3(0.0, 1, -1);
-	
-	
-	//hit_info res = ;
 
-	// pixel = vec4(closest_hit(ray_o, ray_d).color, 0.0);
+
+	float x = (float((pixel_coords.x)* 2 - dims.x) / dims.x);
+	float y = (float((pixel_coords.y)* 2 - dims.y) / dims.y);
+	vec3 ray_o = starting_origin;
+	vec3 ray_d = (ray_o + vec3(x, 1.0, y));
 	pixel = find_color(ray_o, ray_d - ray_o);
 
-  
+		
+	// total = 
+
+  	// pixel = vec4(closest_hit(ray_o, ray_d).color, 0.0);
+
   // output to a specific pixel in the image
   imageStore(dest_tex, pixel_coords, pixel);
 }
