@@ -44,7 +44,7 @@ struct hit_info{
 #define M_PI 3.1415926535897932384626433832795
 #define FOV 1.4
 
-#define NUM_BOUNCES 8
+#define NUM_BOUNCES 100
 
 #define BIAS_FACTOR 0.0001f
 
@@ -205,13 +205,11 @@ vec4 light_intersection(hit_info info){
 	hit_info closest = closest_hit(modified, sun_location);
 	
 	//determine shadow
-	
 	float strength = 1.0;
 	float dist_to_sun = length(sun_location - modified);
 	if (length(closest.impact_point - modified) < dist_to_sun){
 		strength = 0;
 	}
-	// return vec4(info.color / pow(dist_to_sun* 0.2f, 2), 0.0);
 	return vec4(info.color * (0.3 + strength) / pow(dist_to_sun* 0.15f, 2), 0.0);
 };
 
@@ -224,12 +222,11 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 		
 		// ATM we can only refract OR reflect on a surface, not both, not sure if it's possible to do both since recursion is not allowed
 		if (i.refractivity > 0){
-			// T = (b * (N.I) -/+ sqrt(1 - b^2*(1-(N.I)^2))*N - b*I
 			finalColor += local*(1.0-i.refractivity)*frac;
 			frac *= i.refractivity; // <- scale down all subsequent rays
+			// refraction features an ugly hack for avoiding black circles, should be improved
 			vec3 dist = refract(rayDir + (i.impact_normal - rayDir)*0.2f, i.impact_normal, 0.95);
 			rayDir = dist;
-			// rayDir = rayDir + dist / 1.2;
 		} else{
 			finalColor += local*(1.0-i.reflectivity)*frac;
 			frac *= i.reflectivity; // <- scale down all subsequent rays
@@ -254,7 +251,6 @@ void main() {
 	float max_x = 5.0;
 	float max_y = 5.0;
 	
-	// float max_z = 5.0;
 	ivec2 dims = imageSize(dest_tex); // fetch image dimensions
 
 
@@ -265,11 +261,5 @@ void main() {
 	vec3 ray_d = (ray_o + vec3(x, 1.0, y));
 	pixel = find_color(ray_o, ray_d - ray_o);
 
-		
-	// total = 
-
-  	// pixel = vec4(closest_hit(ray_o, ray_d).color, 0.0);
-
-  // output to a specific pixel in the image
-  imageStore(dest_tex, pixel_coords, pixel);
+	imageStore(dest_tex, pixel_coords, pixel);
 }
