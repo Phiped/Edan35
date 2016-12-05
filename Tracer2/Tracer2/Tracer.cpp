@@ -118,8 +118,8 @@ int main(void)
 
 		glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].center"), 0.0 + sin(totFrames++*0.001f), 4.0 + cos(totFrames++*0.001f), -1.0);
 		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].radius"), 1.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].color"), 0.4, 1.0, 0.4);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].reflectivity"), 1.0);
+		glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].color"), 1.0, 0.4, 0.4);
+		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].reflectivity"), 0.0);
 		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].refractivity"), 1.0);
 
 		glUniform3f(glGetUniformLocation(computeHandle, "spheres[1].center"), 3, 2, -1.0);

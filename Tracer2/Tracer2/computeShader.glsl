@@ -224,8 +224,7 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 		if (i.refractivity > 0){
 			finalColor += local*(1.0-i.refractivity)*frac;
 			frac *= i.refractivity; // <- scale down all subsequent rays
-			// refraction features an ugly hack for avoiding black circles, should be improved
-			vec3 dist = refract(rayDir + (i.impact_normal - rayDir)*0.2f, i.impact_normal, 0.95);
+			vec3 dist = refract(rayDir, i.impact_normal, 0.98);
 			rayDir = dist;
 		} else{
 			finalColor += local*(1.0-i.reflectivity)*frac;
