@@ -10,7 +10,7 @@ struct Sphere{
 	float radius;
 	vec3 color;
 	float reflectivity;
-	bool refracting;
+	float refractivity;
 };
 
 struct Box{
@@ -32,20 +32,21 @@ struct hit_info{
 	vec3 impact_normal;
 	vec3 color;
 	float reflectivity;
+	float refractivity;
 	bool hit;
 };
 
 
 #define NUM_PLANES 6
-#define NUM_SPHERES 1
+#define NUM_SPHERES 3
 #define NUM_BOXES 1
 
 #define M_PI 3.1415926535897932384626433832795
 #define FOV 1.4
 
-#define NUM_BOUNCES 10
+#define NUM_BOUNCES 8
 
-#define BIAS_FACTOR 0.000001f
+#define BIAS_FACTOR 0.0001f
 
 const vec3 starting_origin = vec3(0.0, -3.0, 0.0);
 
@@ -64,23 +65,35 @@ vec3 getBias(vec3 origin, vec3 target){
 
 hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 	vec3 dir = normalize(target - origin);
-	vec3 dir2 = origin - s1.center;
-	float a = pow(dir.x, 2) + pow(dir.y, 2) + pow(dir.z, 2);
-	float b = 2 * (dir.x * dir2.x + dir.y*dir2.y + dir.z*dir2.z);
-	float c = pow(dir2.x, 2) + pow(dir2.y, 2) + pow(dir2.z, 2) - pow(s1.radius,2);
+	vec3 dist = origin - s1.center;
+	float a = dot(dir, dir);
+	float b = 2 * dot(dir, dist);
+	float c = dot(dist, dist) - pow(s1.radius,2);
 	
-	float discriminant = pow(b, 2) - (4 * a * c);
+	float discriminant = pow(b, 2) - (4.0 * a * c);
 	hit_info info;
 	
 	info.hit = discriminant >= 0;
-	float t = (- b - sqrt(discriminant)) / (2 * a);
-	info.impact_point = vec3(origin.x + (dir.x * t), origin.y +(dir.y * t), origin.z + (dir.z * t));
-	info.impact_point += getBias(origin, info.impact_point);
-	
-	
+	if (info.hit == false){
+		return info;
+	}
+	float sqrt_d = sqrt(discriminant);	
+	float t = (- b - sqrt_d) / (2 * a);
+
+	if (t < 0){
+		info.hit = false;
+		return info;
+	}
+
+	info.impact_point = origin + (t * dir);
+	info.impact_point += getBias(info.impact_point, s1.center);
 	info.impact_normal = normalize(info.impact_point - s1.center);
-	info.color = s1.color;
+
 	info.reflectivity = s1.reflectivity;
+	info.refractivity = s1.refractivity;
+
+	info.color = s1.color;
+	
 	return info;
 	
 	
@@ -95,6 +108,8 @@ hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 	toReturn.color = p1.color;
 	toReturn.hit = t > 0;
 	toReturn.reflectivity = p1.reflectivity;
+	toReturn.refractivity = 0;
+
 
 	return toReturn;
 };
@@ -126,7 +141,7 @@ hit_info hitBox(Box b, vec3 origin, vec3 target) {
 	info.impact_point = origin + dir * tmin;
 	vec3 offset = info.impact_point - ((b.min + b.max) / 2);
 	
-	/// Box reflection seems to not be working properly
+	/// TODO fix the retarded box reflections that aren't working at all
 	
 	if (abs(offset.x) > abs(offset.y) && abs(offset.x) > abs(offset.z)){
 		info.impact_normal = vec3(normalize(offset.x), 0.0, 0.0);
@@ -137,6 +152,7 @@ hit_info hitBox(Box b, vec3 origin, vec3 target) {
 	}
 	
 	info.reflectivity = b.reflectivity;
+	info.refractivity = 0;
 	
 	return info;
 };
@@ -190,30 +206,70 @@ vec4 light_intersection(hit_info info){
 	
 	//determine shadow
 	
-	float strength = 0.7;
+	float strength = 1.0;
 	float dist_to_sun = length(sun_location - modified);
 	if (length(closest.impact_point - modified) < dist_to_sun){
 		strength = 0;
 	}
 	// return vec4(info.color / pow(dist_to_sun* 0.2f, 2), 0.0);
-	return vec4(info.color * (0.3 + strength) / pow(dist_to_sun* 0.18f, 2), 0.0);
+	return vec4(info.color * (0.3 + strength) / pow(dist_to_sun* 0.15f, 2), 0.0);
 };
 
 vec4 find_color(vec3 rayStart,vec3 rayDir) {
 	vec4 finalColor=vec4(0.0);
 	float frac=1.0; // fraction of my color to add to finalColor
-	for (int raybounce=0;raybounce<NUM_BOUNCES;raybounce++) {
+	for (int raybounce=0;raybounce<NUM_BOUNCES && frac > 0.05;raybounce++) {
 		hit_info i = closest_hit(rayStart,rayStart + rayDir); // geometric search
 		vec4 local = light_intersection(i); // diffuse + specular
-		finalColor += local*(1.0-i.reflectivity)*frac;
-		frac *= i.reflectivity; // <- scale down all subsequent rays
-		rayStart=i.impact_point; // change ray origin for next bounce
-		rayDir=reflect(rayDir,i.impact_normal);
+		
+		// ATM we can only refract OR reflect on a surface, not both, not sure if it's possible to do both since recursion is not allowed
+		if (i.refractivity > 0){
+			// T = (b * (N.I) -/+ sqrt(1 - b^2*(1-(N.I)^2))*N - b*I
+			finalColor += local*(1.0-i.refractivity)*frac;
+			frac *= i.refractivity; // <- scale down all subsequent rays
+			rayDir = refract(rayDir, i.impact_normal, 1.1);
+		} else{
+			finalColor += local*(1.0-i.reflectivity)*frac;
+			frac *= i.reflectivity; // <- scale down all subsequent rays
+			rayDir=reflect(rayDir,i.impact_normal);
+		}
+		rayStart=i.impact_point;
+
+
 	}
 	return finalColor;
 };
 
 
+	// float rindex = prim->GetMaterial()->GetRefrIndex();
+
+// vec3 RefractSlow(vec3 N, vec3 I)
+// {
+    // float ndoti, two_ndoti, ndoti2, a,b,b2,D2;
+    // vec3 T;
+    // ndoti = N.x*I.x + N.y*I.y + N.z*I.z;     // 3 mul, 2 add
+    // ndoti2 = ndoti*ndoti;                    // 1 mul
+    // if (ndoti>=0.0) { b=r; b2=r2;} else {b=invr;b2=invr2;}
+    // D2 = 1.0f - b2*(1.0f - ndoti2);
+
+    // if (D2>=0.0f) {
+        // if (ndoti >= 0.0f)
+            // a = b * ndoti - sqrtf(D2); // 2 mul, 3 add, 1 sqrt
+        // else
+            // a = b * ndoti + sqrtf(D2);
+        // T->x = a*N.x - b*I.x;     // 6 mul, 3 add
+        // T->y = a*N.y - b*I.y;     // ----totals---------
+        // T->z = a*N.z - b*I.z;     // 12 mul, 8 add, 1 sqrt!
+    // } else {
+        // total internal reflection
+        // this usually doesn't happen, so I don't count it.
+        // two_ndoti = ndoti + ndoti;         // +1 add
+        // T->x = two_ndoti * N.x - I.x;      // +3 adds, +3 muls
+        // T->y = two_ndoti * N.y - I.y;
+        // T->z = two_ndoti * N.z - I.z;
+    // }
+    // return T;
+// }
 
 
 
