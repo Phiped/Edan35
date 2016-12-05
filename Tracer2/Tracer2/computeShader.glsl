@@ -48,7 +48,7 @@ struct hit_info{
 
 #define BIAS_FACTOR 0.0001f
 
-const vec3 starting_origin = vec3(0.0, -3.0, 0.0);
+const vec3 starting_origin = vec3(0.0, -3.0, -1.0);
 
 uniform vec3 sun_location;
 
@@ -227,7 +227,9 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 			// T = (b * (N.I) -/+ sqrt(1 - b^2*(1-(N.I)^2))*N - b*I
 			finalColor += local*(1.0-i.refractivity)*frac;
 			frac *= i.refractivity; // <- scale down all subsequent rays
-			rayDir = refract(rayDir, i.impact_normal, 1.1);
+			vec3 dist = refract(rayDir + (i.impact_normal - rayDir)*0.2f, i.impact_normal, 0.95);
+			rayDir = dist;
+			// rayDir = rayDir + dist / 1.2;
 		} else{
 			finalColor += local*(1.0-i.reflectivity)*frac;
 			frac *= i.reflectivity; // <- scale down all subsequent rays
@@ -239,38 +241,6 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 	}
 	return finalColor;
 };
-
-
-	// float rindex = prim->GetMaterial()->GetRefrIndex();
-
-// vec3 RefractSlow(vec3 N, vec3 I)
-// {
-    // float ndoti, two_ndoti, ndoti2, a,b,b2,D2;
-    // vec3 T;
-    // ndoti = N.x*I.x + N.y*I.y + N.z*I.z;     // 3 mul, 2 add
-    // ndoti2 = ndoti*ndoti;                    // 1 mul
-    // if (ndoti>=0.0) { b=r; b2=r2;} else {b=invr;b2=invr2;}
-    // D2 = 1.0f - b2*(1.0f - ndoti2);
-
-    // if (D2>=0.0f) {
-        // if (ndoti >= 0.0f)
-            // a = b * ndoti - sqrtf(D2); // 2 mul, 3 add, 1 sqrt
-        // else
-            // a = b * ndoti + sqrtf(D2);
-        // T->x = a*N.x - b*I.x;     // 6 mul, 3 add
-        // T->y = a*N.y - b*I.y;     // ----totals---------
-        // T->z = a*N.z - b*I.z;     // 12 mul, 8 add, 1 sqrt!
-    // } else {
-        // total internal reflection
-        // this usually doesn't happen, so I don't count it.
-        // two_ndoti = ndoti + ndoti;         // +1 add
-        // T->x = two_ndoti * N.x - I.x;      // +3 adds, +3 muls
-        // T->y = two_ndoti * N.y - I.y;
-        // T->z = two_ndoti * N.z - I.z;
-    // }
-    // return T;
-// }
-
 
 
 
