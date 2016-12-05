@@ -15,6 +15,7 @@
 GLFWwindow* window;
 
 #include "shader.hpp"
+#include "Physics.h"
 #include "utils.h"
 #include <math.h>
 
@@ -85,9 +86,14 @@ int main(void)
 
 	GLint computeHandle = genComputeProg();
 	double lastTime = glfwGetTime();
+	double lastFrame = glfwGetTime();
 
 	int nbFrames = 0;
 	int totFrames = 0;
+
+	Physics p;
+	p.init();
+
 	do {
 		double currentTime = glfwGetTime();
 		nbFrames++;
@@ -112,62 +118,91 @@ int main(void)
 
 		//spheres[0] = Sphere(vec3(1.0, 1.0, -6.0) + vec3(0.5 * sin(roll), 0.5 * cos(roll), 0.5), 1.0, vec3(0.4, 0.4, 1.0));
 		//planes[0] = Plane(vec3(-4.0, -4.0, -7.0), vec3(0.0, 0.0, 1), vec3(1, 1, 0.5));
+		p.tick(currentTime - lastFrame);
+		//std::cout << (currentTime - lastFrame);
+		for (unsigned int i = 0; i < p.spheres.size(); i++) {
+			glUniform3f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].center").c_str()), p.spheres[i]->center.x, p.spheres[i]->center.y, p.spheres[i]->center.z);
+			glUniform1f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].radius").c_str()), p.spheres[i]->radius);
+			glUniform3f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].color").c_str()), p.spheres[i]->color.x, p.spheres[i]->color.y, p.spheres[i]->color.z);
+			glUniform1f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].reflectivity").c_str()), p.spheres[i]->reflectivity);
+			glUniform1f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].refractivity").c_str()), p.spheres[i]->refractivity);
+		}
+
+		for (unsigned int i = 0; i < p.planes.size(); i++) {
+			glUniform3f(glGetUniformLocation(computeHandle, ("planes[" + std::to_string(i) +  "].point").c_str()), p.planes[i]->point.x, p.planes[i]->point.y, p.planes[i]->point.z);
+			glUniform3f(glGetUniformLocation(computeHandle, ("planes[" + std::to_string(i) + "].normal").c_str()), p.planes[i]->normal.x, p.planes[i]->normal.y, p.planes[i]->normal.z);
+			glUniform3f(glGetUniformLocation(computeHandle, ("planes[" + std::to_string(i) + "].color").c_str()), p.planes[i]->color.x, p.planes[i]->color.y, p.planes[i]->color.z);
+			glUniform1f(glGetUniformLocation(computeHandle, ("planes[" + std::to_string(i) + "].reflectivity").c_str()), p.planes[i]->reflectivity);
+		}
+
+		for (unsigned int i = 0; i < p.boxes.size(); i++) {
+			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) +"].min").c_str()), p.boxes[i]->min.x, p.boxes[i]->min.y, p.boxes[i]->min.z);
+			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].max").c_str()), p.boxes[i]->max.x, p.boxes[i]->max.y, p.boxes[i]->max.z);
+			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].color").c_str()), p.boxes[i]->color.x, p.boxes[i]->color.y, p.boxes[i]->color.z);
+			glUniform1f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].min").c_str()), p.boxes[i]->reflectivity);
+
+			//glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].min"), -2.0, 9.0, -2.0);
+			//glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].max"), -1.0, 8.0, -1.0);
+			//glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].color"), 1.0, 0.6, 0.5);
+			//glUniform1f(glGetUniformLocation(computeHandle, "boxes[0].reflectivity"), 0.0);
+
+		}
 
 
 		glUniform3f(glGetUniformLocation(computeHandle, "sun_location"), 3.0, 1.0, 3.0);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].center"), 0.0 + sin(totFrames++*0.001f), 4.0 + cos(totFrames++*0.001f), -1.0);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].radius"), 1.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].color"), 1.0, 0.4, 0.4);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].reflectivity"), 0.0);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].refractivity"), 1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].center"), 0.0 + sin(totFrames++*0.001f), 4.0 + cos(totFrames++*0.001f), -1.0);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].radius"), 1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "spheres[0].color"), 1.0, 0.4, 0.4);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].reflectivity"), 0.0);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[0].refractivity"), 1.0);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "spheres[1].center"), 3, 2, -1.0);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[1].radius"), 1.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "spheres[1].color"), 0.4, 1.0, 0.4);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[1].reflectivity"), 1.0);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[1].refractivity"), 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "spheres[1].center"), 3, 2, -1.0);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[1].radius"), 1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "spheres[1].color"), 0.4, 1.0, 0.4);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[1].reflectivity"), 1.0);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[1].refractivity"), 0.0);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "spheres[2].center"), -3, 3.0, -1.0);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[2].radius"), 1.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "spheres[2].color"), 0.4, 1.0, 0.4);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[2].reflectivity"), 0.1);
-		glUniform1f(glGetUniformLocation(computeHandle, "spheres[2].refractivity"), 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "spheres[2].center"), -3, 3.0, -1.0);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[2].radius"), 1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "spheres[2].color"), 0.4, 1.0, 0.4);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[2].reflectivity"), 0.1);
+		//glUniform1f(glGetUniformLocation(computeHandle, "spheres[2].refractivity"), 0.0);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[0].point"), 0.0, 0.0, -2.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[0].normal"), 0.0, 0.0, 1.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[0].color"), 0.9, 0.9, 0.5);
-		glUniform1f(glGetUniformLocation(computeHandle, "planes[0].reflectivity"), 0.5);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[0].point"), 0.0, 0.0, -2.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[0].normal"), 0.0, 0.0, 1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[0].color"), 0.9, 0.9, 0.5);
+		//glUniform1f(glGetUniformLocation(computeHandle, "planes[0].reflectivity"), 0.5);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[1].point"), 0.0, 0.0, 10.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[1].normal"), 0.0, 0.0, -1.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[1].color"), 0.4, 0.7, 0.8);
-		glUniform1f(glGetUniformLocation(computeHandle, "planes[1].reflectivity"), 0.3);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[1].point"), 0.0, 0.0, 10.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[1].normal"), 0.0, 0.0, -1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[1].color"), 0.4, 0.7, 0.8);
+		//glUniform1f(glGetUniformLocation(computeHandle, "planes[1].reflectivity"), 0.3);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[2].point"), 0.0, 10.0, 0.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[2].normal"), 0.0, 1.0, 0.0);	
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[2].color"), 0.4, 0.7, 0.8);
-		glUniform1f(glGetUniformLocation(computeHandle, "planes[2].reflectivity"), 0.3);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[2].point"), 0.0, 10.0, 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[2].normal"), 0.0, 1.0, 0.0);	
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[2].color"), 0.4, 0.7, 0.8);
+		//glUniform1f(glGetUniformLocation(computeHandle, "planes[2].reflectivity"), 0.3);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[3].point"), 7.0, 0.0, 0.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[3].normal"), 1.0, 0.0, 0.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[3].color"), 0.4, 0.7, 0.8);
-		glUniform1f(glGetUniformLocation(computeHandle, "planes[3].reflectivity"), 0.3);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[3].point"), 7.0, 0.0, 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[3].normal"), 1.0, 0.0, 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[3].color"), 0.4, 0.7, 0.8);
+		//glUniform1f(glGetUniformLocation(computeHandle, "planes[3].reflectivity"), 0.3);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[4].point"), -7.0, 0.0, 0.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[4].normal"), -1.0, 0.0, 0.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[4].color"), 0.4, 0.7, 0.8);
-		glUniform1f(glGetUniformLocation(computeHandle, "planes[4].reflectivity"), 0.3);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[4].point"), -7.0, 0.0, 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[4].normal"), -1.0, 0.0, 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[4].color"), 0.4, 0.7, 0.8);
+		//glUniform1f(glGetUniformLocation(computeHandle, "planes[4].reflectivity"), 0.3);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[5].point"), 0.0, -7.0, 0.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[5].normal"), 0.0, -1.0, 0.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "planes[5].color"), 0.4, 0.7, 0.8);
-		glUniform1f(glGetUniformLocation(computeHandle, "planes[5].reflectivity"), 0.3);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[5].point"), 0.0, -7.0, 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[5].normal"), 0.0, -1.0, 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "planes[5].color"), 0.4, 0.7, 0.8);
+		//glUniform1f(glGetUniformLocation(computeHandle, "planes[5].reflectivity"), 0.3);
 
-		glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].min"), -2.0, 9.0, -2.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].max"), -1.0, 8.0, -1.0);
-		glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].color"), 1.0, 0.6, 0.5);
-		glUniform1f(glGetUniformLocation(computeHandle, "boxes[0].reflectivity"), 0.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].min"), -2.0, 9.0, -2.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].max"), -1.0, 8.0, -1.0);
+		//glUniform3f(glGetUniformLocation(computeHandle, "boxes[0].color"), 1.0, 0.6, 0.5);
+		//glUniform1f(glGetUniformLocation(computeHandle, "boxes[0].reflectivity"), 0.0);
 
 
 
@@ -204,7 +239,7 @@ int main(void)
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-
+		lastFrame = currentTime;
 	} // Check if the ESC key was pressed or the window was closed
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(window) == 0);
