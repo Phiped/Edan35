@@ -5,7 +5,7 @@
 GLEW version 1.10.0
 Reporting capabilities of pixelformat 1
 Running on a GeForce GTX 1070/PCIe/SSE2 from NVIDIA Corporation
-OpenGL version 4.5.0 NVIDIA 375.95 is supported
+OpenGL version 4.5.0 NVIDIA 376.09 is supported
 
 GL_VERSION_1_1:                                                OK 
 ---------------

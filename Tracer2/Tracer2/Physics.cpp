@@ -58,30 +58,30 @@ void Physics::init() {
 
 	Plane *p2 = new Plane();
 	p2->point = glm::vec3(0.0, 0.0, 10.0);
-	p2->normal = glm::vec3(0.0, 0.0, -1.0);
+	p2->normal = glm::vec3(0.0, 0.0, 1.0);
 	p2->color = glm::vec3(0.4, 0.7, 0.8);
 	p2->reflectivity = 0.3;
 
 	Plane *p3 = new Plane();
-	p3->point = glm::vec3(0.0, 10.0, 0.0);
+	p3->point = glm::vec3(0.0, 6.0, 0.0);
 	p3->normal = glm::vec3(0.0, 1.0, 0.0);
 	p3->color = glm::vec3(0.4, 0.7, 0.8);
 	p3->reflectivity = 0.3;
 
 	Plane *p4 = new Plane();
-	p4->point = glm::vec3(7.0, 0.0, 0.0);
+	p4->point = glm::vec3(6.0, 0.0, 0.0);
 	p4->normal = glm::vec3(1.0, 0.0, 0.0);
 	p4->color = glm::vec3(0.4, 0.7, 0.8);
 	p4->reflectivity = 0.3;
 
 	Plane *p5 = new Plane();
-	p5->point = glm::vec3(-7.0, 0.0, 0.0);
+	p5->point = glm::vec3(-6.0, 0.0, 0.0);
 	p5->normal = glm::vec3(-1.0, 0.0, 0.0);
 	p5->color = glm::vec3(0.4, 0.7, 0.8);
 	p5->reflectivity = 0.3;
 
 	Plane *p6 = new Plane();
-	p6->point = glm::vec3(0.0, -3.1, 0.0);
+	p6->point = glm::vec3(0.0, -4.0, 0.0);
 	p6->normal = glm::vec3(0.0, -1.0, 0.0);
 	p6->color = glm::vec3(0.4, 0.7, 0.8);
 	p6->reflectivity = 0.3;
