@@ -109,7 +109,7 @@ bool Physics::atGround(Sphere *s) {
 }
 
 void Physics::tick(float deltaTime) {
-	float frictionFactor = 0.2f;
+	float frictionFactor = 0.05f;
 	float gravityForce = 10.0f;
 
 	for (int i = 0; i < spheres.size(); i++) {

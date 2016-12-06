@@ -88,6 +88,8 @@ int main(void)
 	double lastTime = glfwGetTime();
 	double lastFrame = glfwGetTime();
 
+	int controlled = 0;
+
 	int nbFrames = 0;
 	int totFrames = 0;
 
@@ -113,9 +115,25 @@ int main(void)
 		glUseProgram(computeHandle);
 		glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)totFrames++*0.001f);
 
-		int state = glfwGetKey(window, GLFW_KEY_E);
-		if (state == GLFW_PRESS)
-			p.spheres[0]->velocity += glm::vec3(0.0, 0.2, 0.0);
+		if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
+			controlled = 0;
+		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			controlled = 1;
+		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+			controlled = 2;
+
+		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+			p.spheres[controlled]->velocity += glm::vec3(0.0, 0.1, 0.0);
+		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+			p.spheres[controlled]->velocity += glm::vec3(0.0, -0.1, 0.0);
+
+		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+			p.spheres[controlled]->velocity += glm::vec3(-0.1, 0.0, 0.0);
+		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+			p.spheres[controlled]->velocity += glm::vec3(0.1, 0.0, 0.0);
+
+		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+			p.spheres[controlled]->velocity += glm::vec3(0.0, 0.0, 0.1);
 
 		// add all of our objects
 
