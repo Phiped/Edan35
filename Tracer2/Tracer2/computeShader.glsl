@@ -213,16 +213,14 @@ vec4 light_intersection(hit_info info){
 	return vec4(info.color * (0.3 + strength) / pow(dist_to_sun* 0.15f, 2), 0.0);
 };
 
-vec4 find_color(vec3 rayStart,vec3 rayDir) {
+vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {
 	vec4 finalColor=vec4(0.0);
-	float frac=1.0; // fraction of my color to add to finalColor
 	for (int raybounce=0;raybounce<NUM_BOUNCES && frac > 0.05;raybounce++) {
 		hit_info i = closest_hit(rayStart,rayStart + rayDir); // geometric search
 		vec4 local = light_intersection(i); // diffuse + specular
 		
-		// ATM we can only refract OR reflect on a surface, not both, not sure if it's possible to do both since recursion is not allowed
 		if (i.refractivity > 0){
-			finalColor += local*(1.0-i.refractivity)*frac;
+			finalColor += local*(1.0-i.refractivity-i.reflectivity)*frac;
 			frac *= i.refractivity; // <- scale down all subsequent rays
 			vec3 dist = refract(rayDir, i.impact_normal, 0.97);
 			rayDir = dist;
@@ -237,6 +235,37 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 	}
 	return finalColor;
 };
+
+vec4 find_color(vec3 rayStart,vec3 rayDir) {
+	vec4 finalColor=vec4(0.0);
+	float frac=1.0; // fraction of my color to add to finalColor
+	for (int raybounce=0;raybounce<NUM_BOUNCES && frac > 0.05;raybounce++) {
+		hit_info i = closest_hit(rayStart,rayStart + rayDir); // geometric search
+		vec4 local = light_intersection(i); // diffuse + specular
+		
+		// since recursion is not allowed, we can only allow as many "splits" as new functions we have, this is a workaround (hack)
+		if (i.refractivity > 0){
+			finalColor += local*(1.0-i.refractivity-i.reflectivity)*frac;
+			vec4 reflected = find_color2(i.impact_point, reflect(rayDir,i.impact_normal), i.reflectivity);
+			finalColor += reflected;
+			frac *= i.refractivity; // <- scale down all subsequent rays
+			vec3 dist = refract(rayDir, i.impact_normal, 1.05);
+
+			
+			rayDir = dist;
+		} else{
+			finalColor += local*(1.0-i.reflectivity)*frac;
+			frac *= i.reflectivity; // <- scale down all subsequent rays
+			rayDir=reflect(rayDir,i.impact_normal);
+		}
+		rayStart=i.impact_point;
+
+
+	}
+	return finalColor;
+};
+
+
 
 
 
