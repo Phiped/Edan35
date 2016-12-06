@@ -20,7 +20,7 @@ void Physics::init() {
 	srand(static_cast <unsigned> (time(0)));
 
 	Sphere *s1 = new Sphere();
-	s1->center = glm::vec3(0.0, 4.0, 1.0);
+	s1->center = glm::vec3(0.0, 4.0, 1.1);
 	s1->color = glm::vec3(1.0, 0.4, 0.4);
 	s1->radius = 1.0;
 	s1->reflectivity = 0.1;
@@ -29,7 +29,7 @@ void Physics::init() {
 	//s1->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s2 = new Sphere();
-	s2->center = glm::vec3(0.0, 4.0, 3.0);
+	s2->center = glm::vec3(0.0, 4.0, 3.2);
 	s2->color = glm::vec3(0.4, 1.0, 0.4);
 	s2->radius = 1.0;
 	s2->reflectivity = 0.1;
@@ -81,7 +81,7 @@ void Physics::init() {
 	p5->reflectivity = 0.3;
 
 	Plane *p6 = new Plane();
-	p6->point = glm::vec3(0.0, -3.0, 0.0);
+	p6->point = glm::vec3(0.0, -3.1, 0.0);
 	p6->normal = glm::vec3(0.0, -1.0, 0.0);
 	p6->color = glm::vec3(0.4, 0.7, 0.8);
 	p6->reflectivity = 0.3;
@@ -109,7 +109,7 @@ bool Physics::atGround(Sphere *s) {
 }
 
 void Physics::tick(float deltaTime) {
-	float frictionFactor = 0.05f;
+	float frictionFactor = 0.2f;
 	float gravityForce = 10.0f;
 
 	for (int i = 0; i < spheres.size(); i++) {
@@ -151,7 +151,7 @@ void Physics::tick(float deltaTime) {
 				// collision detected
 				//std::cout << "COLLISION";
 				s->velocity = s->velocity - 2 * glm::dot(p->normal, s->velocity) * p->normal;
-				s->velocity.z *= 0.7;
+				s->velocity.z *= 0.8;
 			}
 		}
 
