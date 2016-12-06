@@ -210,7 +210,7 @@ vec4 light_intersection(hit_info info){
 	if (length(closest.impact_point - modified) < dist_to_sun){
 		strength = 0;
 	}
-	return vec4(info.color * (0.3 + strength) / pow(dist_to_sun* 0.15f, 2), 0.0);
+	return vec4(info.color * (0.3 + strength) / pow(dist_to_sun* 0.18f, 2), 0.0);
 };
 
 vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {
@@ -249,9 +249,7 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 			vec4 reflected = find_color2(i.impact_point, reflect(rayDir,i.impact_normal), i.reflectivity);
 			finalColor += reflected;
 			frac *= i.refractivity; // <- scale down all subsequent rays
-			vec3 dist = refract(rayDir, i.impact_normal, 1.05);
-
-			
+			vec3 dist = refract(rayDir, i.impact_normal, 0.8);
 			rayDir = dist;
 		} else{
 			finalColor += local*(1.0-i.reflectivity)*frac;
