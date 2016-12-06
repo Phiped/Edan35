@@ -54,7 +54,7 @@ void Physics::init() {
 	p1->point = glm::vec3(0.0, 0.0, -2.0);
 	p1->normal = glm::vec3(0.0, 0.0, -1.0);
 	p1->color = glm::vec3(0.9, 0.9, 0.5);
-	p1->reflectivity = 0.5;
+	p1->reflectivity = 0.3;
 
 	Plane *p2 = new Plane();
 	p2->point = glm::vec3(0.0, 0.0, 10.0);

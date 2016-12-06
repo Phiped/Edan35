@@ -203,13 +203,20 @@ vec4 light_intersection(hit_info info){
 	vec3 modified =  info.impact_point + (sun_location - info.impact_point)*0.01f;
 
 	hit_info closest = closest_hit(modified, sun_location);
+	float accumulated_block = 0.0;
+	
+	float dist_to_sun = length(sun_location - modified);
+	while (length(closest.impact_point - modified) < dist_to_sun && accumulated_block < 1.0){
+		accumulated_block += (1-closest.refractivity);
+		accumulated_block = min(accumulated_block, 1.0);
+		closest = closest_hit(closest.impact_point, sun_location);
+	}
 	
 	//determine shadow
-	float strength = 1.0;
-	float dist_to_sun = length(sun_location - modified);
-	if (length(closest.impact_point - modified) < dist_to_sun){
-		strength = 0;
-	}
+	float strength = (1-accumulated_block);
+	// if (length(closest.impact_point - modified) < dist_to_sun){
+		// strength = 0;
+	// }
 	return vec4(info.color * strength / pow(dist_to_sun* 0.18f, 2), 0.0);
 };
 
@@ -273,12 +280,7 @@ void main() {
   // get index in global work group i.e x,y position
   ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
   
-	
-	float max_x = 5.0;
-	float max_y = 5.0;
-	
 	ivec2 dims = imageSize(dest_tex); // fetch image dimensions
-
 
 
 	float x = (float((pixel_coords.x)* 2 - dims.x) / dims.x);
