@@ -115,6 +115,10 @@ int main(void)
 		glUseProgram(computeHandle);
 		glUniform1f(glGetUniformLocation(computeHandle, "roll"), (float)totFrames++*0.001f);
 
+		float deltaTime = currentTime - lastFrame;
+		p.tick(deltaTime);
+
+
 		if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
 			controlled = 0;
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
@@ -122,25 +126,24 @@ int main(void)
 		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
 			controlled = 2;
 
+		float push_strength = 5.0;
+
 		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-			p.spheres[controlled]->velocity += glm::vec3(0.0, 0.1, 0.0);
+			p.spheres[controlled]->velocity += glm::vec3(0.0, push_strength, 0.0) * deltaTime;
 		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-			p.spheres[controlled]->velocity += glm::vec3(0.0, -0.1, 0.0);
+			p.spheres[controlled]->velocity += glm::vec3(0.0, -push_strength, 0.0) * deltaTime;
 
 		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-			p.spheres[controlled]->velocity += glm::vec3(-0.1, 0.0, 0.0);
+			p.spheres[controlled]->velocity += glm::vec3(-push_strength, 0.0, 0.0) * deltaTime;
 		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-			p.spheres[controlled]->velocity += glm::vec3(0.1, 0.0, 0.0);
+			p.spheres[controlled]->velocity += glm::vec3(push_strength, 0.0, 0.0) * deltaTime;
 
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-			p.spheres[controlled]->velocity += glm::vec3(0.0, 0.0, 0.1);
+			p.spheres[controlled]->velocity += glm::vec3(0.0, 0.0, push_strength * 2 * deltaTime);
 
 		// add all of our objects
 
-		//spheres[0] = Sphere(vec3(1.0, 1.0, -6.0) + vec3(0.5 * sin(roll), 0.5 * cos(roll), 0.5), 1.0, vec3(0.4, 0.4, 1.0));
-		//planes[0] = Plane(vec3(-4.0, -4.0, -7.0), vec3(0.0, 0.0, 1), vec3(1, 1, 0.5));
-		p.tick(currentTime - lastFrame);
-		//std::cout << (currentTime - lastFrame);
+
 		for (unsigned int i = 0; i < p.spheres.size(); i++) {
 			glUniform3f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].center").c_str()), p.spheres[i]->center.x, p.spheres[i]->center.y, p.spheres[i]->center.z);
 			glUniform1f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].radius").c_str()), p.spheres[i]->radius);
@@ -165,7 +168,7 @@ int main(void)
 		}
 
 
-		glUniform3f(glGetUniformLocation(computeHandle, "sun_location"), 5.0, 3.0, 3.0);
+		glUniform3f(glGetUniformLocation(computeHandle, "sun_location"), 5.0, 1.0, 3.0);
 		glDispatchCompute(1024 / 16, 1024 / 16, 1); // 512^2 threads in blocks of 16^2
 
 		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);

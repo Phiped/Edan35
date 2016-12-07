@@ -38,11 +38,10 @@ struct hit_info{
 
 
 #define NUM_PLANES 6
-#define NUM_SPHERES 3
+#define NUM_SPHERES 5
 #define NUM_BOXES 1
 
 #define M_PI 3.1415926535897932384626433832795
-#define FOV 1.4
 
 #define NUM_BOUNCES 100
 

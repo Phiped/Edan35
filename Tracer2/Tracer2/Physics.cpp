@@ -20,7 +20,7 @@ void Physics::init() {
 	srand(static_cast <unsigned> (time(0)));
 
 	Sphere *s1 = new Sphere();
-	s1->center = glm::vec3(0.0, 4.0, 1.1);
+	s1->center = glm::vec3(0.0, 4.0, 1.0);
 	s1->color = glm::vec3(1.0, 0.4, 0.4);
 	s1->radius = 1.0;
 	s1->reflectivity = 0.1;
@@ -29,7 +29,7 @@ void Physics::init() {
 	//s1->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s2 = new Sphere();
-	s2->center = glm::vec3(0.0, 4.0, 3.2);
+	s2->center = glm::vec3(0.0, 4.0, 3.0);
 	s2->color = glm::vec3(0.4, 1.0, 0.4);
 	s2->radius = 1.0;
 	s2->reflectivity = 0.1;
@@ -43,12 +43,30 @@ void Physics::init() {
 	s3->radius = 1.0;
 	s3->reflectivity = 1.0;
 	s3->refractivity = 0.0;
-	s3->velocity = glm::vec3(0.1f, 0.2f, 0.0);
+	s3->velocity = glm::vec3(0.3f, 0.4f, 0.0);
 	//s3->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
+
+	Sphere *s4 = new Sphere();
+	s4->center = glm::vec3(2.0, 4.0, 0.0);
+	s4->color = glm::vec3(1.0, 0.0, 0.0);
+	s4->radius = 1.5;
+	s4->reflectivity = 0.5;
+	s4->refractivity = 0.0;
+	s4->velocity = glm::vec3(0.3f, 0.4f, 0.0);
+
+	Sphere *s5 = new Sphere();
+	s5->center = glm::vec3(1.0, 2.0, -1.0);
+	s5->color = glm::vec3(0.0, 0.0, 1.0);
+	s5->radius = 0.5;
+	s5->reflectivity = 0.0;
+	s5->refractivity = 0.0;
+	s5->velocity = glm::vec3(0.3f, 0.4f, 0.0);
 
 	spheres.push_back(s1);
 	spheres.push_back(s2);
 	spheres.push_back(s3);
+	spheres.push_back(s4);
+	spheres.push_back(s5);
 
 	Plane *p1 = new Plane();
 	p1->point = glm::vec3(0.0, 0.0, -2.0);
@@ -104,18 +122,23 @@ void Physics::init() {
 }
 
 bool Physics::atGround(Sphere *s) {
-	return (s->center.z - s->radius - ground) < 0.01f;
+	return (s->center.z - s->radius - ground) < 0;
 
 }
 
 void Physics::tick(float deltaTime) {
-	float frictionFactor = 0.05f;
-	float gravityForce = 10.0f;
+	float frictionFactor = 0.2f;
+	float gravityForce = 7.0f;
+
+	// increase this number for more spheres...
+	bool collisionBelow[10] = { false };
+
+
 
 	for (int i = 0; i < spheres.size(); i++) {
 		// determine collision and move along movement vector
 		Sphere *s = spheres[i];
-		s->center += s->velocity * deltaTime;
+
 		for (int j = i; j < spheres.size(); j++) {
 			Sphere *s2 = spheres[j];
 			if (s != s2 && glm::length(s->center - s2->center) <= s->radius + s2->radius) {
@@ -142,6 +165,13 @@ void Physics::tick(float deltaTime) {
 
 				s->velocity = v1x * (m1 - m2) / (m1 + m2) + v2x * (2 * m2) / (m1 + m2) + v1y;
 				s2->velocity = v1x * (2 * m1) / (m1 + m2) + v2x *(m2 - m1) / (m1 + m2) + v2y;
+
+				if (s->center.z > s2->center.z) {
+					collisionBelow[i] = true;
+				}
+				else if (s->center.z < s2->center.z) {
+					collisionBelow[j] = true;
+				}
 			}
 		}
 		for (Plane *p : planes) {
@@ -151,12 +181,18 @@ void Physics::tick(float deltaTime) {
 				// collision detected
 				//std::cout << "COLLISION";
 				s->velocity = s->velocity - 2 * glm::dot(p->normal, s->velocity) * p->normal;
-				s->velocity.z *= 0.8;
+				s->velocity.z *= 0.7;
 			}
 		}
 
+		s->center += s->velocity * deltaTime;
 
-		if (atGround(s)) {
+		}
+		
+	for (int i = 0; i < spheres.size(); i++) {
+		Sphere *s = spheres[i];
+
+		if (collisionBelow[i]) {
 			// reduce speeds
 			if (s->velocity.x > 0) {
 				s->velocity.x = std::max(0.0f, s->velocity.x - deltaTime * frictionFactor);
@@ -170,13 +206,18 @@ void Physics::tick(float deltaTime) {
 			else {
 				s->velocity.y = std::min(0.0f, s->velocity.y + deltaTime * frictionFactor);
 			}
-			if (abs(s->velocity.z) < 0.15f) {
+			
+		}
+		if (atGround(s) || collisionBelow[i]) {
+			if (abs(s->velocity.z) < 0.10f) {
 				s->velocity.z = 0;
 			}
 		}
 		else {
 			s->velocity.z -= gravityForce * deltaTime;
+
 		}
+
 
 
 
