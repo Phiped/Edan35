@@ -1,1 +1,8 @@
-﻿  EDAN35_Assignment2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\binaries\src\EDAN35\Debug\EDAN35_Assignment2.exe
+﻿C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/ZERO_CHECK.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/src/core/bonobo.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/src/external/external_libs.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/glfw/binary/src/glfw.vcxproj' does not exist.
+  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/EDAN35/CMakeLists.txt
+  CMake is re-running because C:\Users\Tobbe\Desktop\edan35\binaries\src\EDAN35\CMakeFiles\generate.stamp dependency file is missing.
+CUSTOMBUILD : CMake error : The source directory "C:/Users/Tobbe/Desktop/edan35/CG_Labs" does not exist.
+  Specify --help for usage, or press the help button on the CMake GUI.

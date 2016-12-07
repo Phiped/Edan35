@@ -205,9 +205,9 @@ vec4 light_intersection(hit_info info){
 	float accumulated_block = 0.0;
 	
 	float dist_to_sun = length(sun_location - modified);
-	while (length(closest.impact_point - modified) < dist_to_sun && accumulated_block < 1.0){
+	while (length(closest.impact_point - modified) < dist_to_sun && accumulated_block < 0.8){
 		accumulated_block += (1-closest.refractivity);
-		accumulated_block = min(accumulated_block, 1.0);
+		accumulated_block = min(accumulated_block, 0.8);
 		closest = closest_hit(closest.impact_point, sun_location);
 	}
 	
@@ -216,7 +216,7 @@ vec4 light_intersection(hit_info info){
 	// if (length(closest.impact_point - modified) < dist_to_sun){
 		// strength = 0;
 	// }
-	return vec4(info.color * strength / pow(dist_to_sun* 0.25f, 2), 0.0);
+	return vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.25f, 2), 0.0);
 };
 
 vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {

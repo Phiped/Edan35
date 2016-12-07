@@ -1,8 +1,7 @@
-﻿  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/external/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\Tobbe\Desktop\edan35\binaries\src\external\CMakeFiles\generate.stamp is up-to-date.
-  glad.c
-  imgui_impl_glfw_gl3.cpp
-  lodepng.cpp
-C:\Users\Tobbe\Desktop\edan35\CG_Labs\src\external\lodepng.cpp(3416): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
-  Generating Code...
-  external_libs.vcxproj -> C:\Users\Tobbe\Desktop\edan35\binaries\src\external\Debug\external_libs.lib
+﻿C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/ZERO_CHECK.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/glfw/binary/src/glfw.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/project_dep.vcxproj' does not exist.
+  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/src/external/CMakeLists.txt
+CUSTOMBUILD : CMake error : The source directory "C:/Users/Tobbe/Desktop/edan35/CG_Labs" does not exist.
+  CMake is re-running because C:\Users\Tobbe\Desktop\edan35\binaries\src\external\CMakeFiles\generate.stamp dependency file is missing.
+  Specify --help for usage, or press the help button on the CMake GUI.

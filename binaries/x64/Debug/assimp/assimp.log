@@ -1,1 +1,5 @@
-﻿  Performing update step for 'assimp'
+﻿C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/edan35/binaries/ZERO_CHECK.vcxproj' does not exist.
+  Building Custom Rule C:/Users/Tobbe/Desktop/edan35/CG_Labs/CMakeLists.txt
+  CMake is re-running because C:\Users\Tobbe\Desktop\edan35\binaries\CMakeFiles\generate.stamp dependency file is missing.
+CUSTOMBUILD : CMake error : The source directory "C:/Users/Tobbe/Desktop/edan35/CG_Labs" does not exist.
+  Specify --help for usage, or press the help button on the CMake GUI.

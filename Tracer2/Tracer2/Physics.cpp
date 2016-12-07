@@ -20,7 +20,7 @@ void Physics::init() {
 	srand(static_cast <unsigned> (time(0)));
 
 	Sphere *s1 = new Sphere();
-	s1->center = glm::vec3(0.0, 4.0, 1.0);
+	s1->center = glm::vec3(0.0, 6.0, 6.0);
 	s1->color = glm::vec3(1.0, 0.4, 0.4);
 	s1->radius = 1.0;
 	s1->reflectivity = 0.1;
@@ -29,7 +29,7 @@ void Physics::init() {
 	//s1->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s2 = new Sphere();
-	s2->center = glm::vec3(0.0, 4.0, 3.0);
+	s2->center = glm::vec3(0.0, 6.0, 4.0);
 	s2->color = glm::vec3(0.4, 1.0, 0.4);
 	s2->radius = 1.0;
 	s2->reflectivity = 0.1;
@@ -38,29 +38,29 @@ void Physics::init() {
 	//s2->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s3 = new Sphere();
-	s3->center = glm::vec3(0.0, 4.0, -1.0);
+	s3->center = glm::vec3(0.0, 6.0, 2.0);
 	s3->color = glm::vec3(0.4, 1.0, 0.4);
 	s3->radius = 1.0;
 	s3->reflectivity = 1.0;
 	s3->refractivity = 0.0;
-	s3->velocity = glm::vec3(0.3f, 0.4f, 0.0);
+	s3->velocity = glm::vec3(0.0, 0.0, 0.0);
 	//s3->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s4 = new Sphere();
-	s4->center = glm::vec3(2.0, 4.0, 0.0);
+	s4->center = glm::vec3(0.0, 6.0, -0.5);
 	s4->color = glm::vec3(1.0, 0.0, 0.0);
 	s4->radius = 1.5;
 	s4->reflectivity = 0.5;
 	s4->refractivity = 0.0;
-	s4->velocity = glm::vec3(0.3f, 0.4f, 0.0);
+	s4->velocity = glm::vec3(0.1f, 0.01f, 0.0);
 
 	Sphere *s5 = new Sphere();
-	s5->center = glm::vec3(1.0, 2.0, -1.0);
+	s5->center = glm::vec3(0.0, 6.0, 7.0);
 	s5->color = glm::vec3(0.0, 0.0, 1.0);
 	s5->radius = 0.5;
 	s5->reflectivity = 0.0;
 	s5->refractivity = 0.0;
-	s5->velocity = glm::vec3(0.3f, 0.4f, 0.0);
+	s5->velocity = glm::vec3(0.0f, 0.0f, 0.0);
 
 	spheres.push_back(s1);
 	spheres.push_back(s2);
@@ -81,7 +81,7 @@ void Physics::init() {
 	p2->reflectivity = 0.3;
 
 	Plane *p3 = new Plane();
-	p3->point = glm::vec3(0.0, 6.0, 0.0);
+	p3->point = glm::vec3(0.0, 8.0, 0.0);
 	p3->normal = glm::vec3(0.0, 1.0, 0.0);
 	p3->color = glm::vec3(0.4, 0.7, 0.8);
 	p3->reflectivity = 0.3;

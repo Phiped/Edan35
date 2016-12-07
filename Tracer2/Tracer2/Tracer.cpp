@@ -119,12 +119,16 @@ int main(void)
 		p.tick(deltaTime);
 
 
-		if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
-			controlled = 0;
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-			controlled = 1;
+			controlled = 0;
 		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+			controlled = 1;
+		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
 			controlled = 2;
+		if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+			controlled = 3;
+		if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+			controlled = 4;
 
 		float push_strength = 5.0;
 
