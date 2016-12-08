@@ -59,6 +59,8 @@ uniform Box boxes[NUM_BOXES];
 uniform Plane planes[NUM_PLANES];
 
 
+ivec2 pixel_coords;
+
 vec3 getBias(vec3 origin, vec3 target){
 	return (target - origin) * BIAS_FACTOR;
 }
@@ -94,7 +96,7 @@ hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 	info.refractivity = s1.refractivity;
 
 	info.color = s1.color;
-	info.diffuse = s1.reflectivity;
+	info.diffuse = s1.diffuse;
 	
 	
 	return info;
@@ -121,7 +123,7 @@ hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 	
 	toReturn.reflectivity = p1.reflectivity;
 	toReturn.refractivity = 0;
-	toReturn.diffuse = 1.0;
+	toReturn.diffuse = 0.02;
 
 
 	return toReturn;
@@ -222,14 +224,19 @@ vec4 light_intersection(hit_info info){
 	float dist_to_sun = length(sun_location - modified);
 	while (length(closest.impact_point - modified) < dist_to_sun && accumulated_block < 0.8){
 		accumulated_block += (1-closest.refractivity);
-		accumulated_block = min(accumulated_block, 0.67);
+		//accumulated_block = min(accumulated_block, 0.67);
 		closest = closest_hit(closest.impact_point, sun_location);
 	}
 	
 	float strength = (1-accumulated_block);
-	float factor = max(max(info.diffuse , dot(info.impact_normal, sunDir)), 0.2); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
-	return factor * vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
+	//float factor = max(0.0 , dot(info.impact_normal, sunDir)); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
+	return  vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
 };
+
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
 
 vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {
 	vec4 finalColor=vec4(0.0);
@@ -254,25 +261,29 @@ vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {
 	return finalColor;
 };
 
+
 vec4 find_color(vec3 rayStart,vec3 rayDir) {
 	vec4 finalColor=vec4(0.0);
 	float frac=1.0; // fraction of my color to add to finalColor
 	for (int raybounce=0;raybounce<NUM_BOUNCES && frac > 0.05;raybounce++) {
 		hit_info i = closest_hit(rayStart,rayStart + rayDir); // geometric search
 		vec4 local = light_intersection(i); // diffuse + specular
-		
 		// since recursion is not allowed, we can only allow as many "splits" as new functions we have, this is a workaround (hack)
 		if (i.refractivity > 0){
 			finalColor += local*(1.0-i.refractivity-i.reflectivity)*frac;
 			vec4 reflected = find_color2(i.impact_point, reflect(rayDir,i.impact_normal), i.reflectivity);
 			finalColor += reflected;
 			frac *= i.refractivity; // <- scale down all subsequent rays
+			
+			
 			vec3 dist = refract(rayDir, i.impact_normal, 0.8);
 			rayDir = dist;
 		} else{
+			//i.diffuse = -i.diffuse;
+			vec3 newDir = vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + rayDir.xy)) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1,0))) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(0,1))) * i.diffuse);
 			finalColor += local*(1.0-i.reflectivity)*frac;
 			frac *= i.reflectivity; // <- scale down all subsequent rays
-			rayDir=reflect(rayDir,i.impact_normal);
+			rayDir=reflect(newDir,i.impact_normal);
 		}
 		rayStart=i.impact_point;
 
@@ -289,18 +300,18 @@ void main() {
   // base pixel colour for image	
   vec4 pixel = vec4(0.0, 0.0, 0.0, 0.0);
   // get index in global work group i.e x,y position
-  ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
+  pixel_coords = ivec2(gl_GlobalInvocationID.xy);
 	
 	
 	
 	ivec2 dims = imageSize(dest_tex); // fetch image dimensions
 
-
+	vec4 total = vec4(0.0);
 	float x = (float((pixel_coords.x)* 2 - dims.x) / dims.x);
 	float y = (float((pixel_coords.y)* 2 - dims.y) / dims.y);
 	vec3 ray_o = starting_origin;
 	vec3 ray_d = (ray_o + vec3(x, 1.0, y));
 	pixel = find_color(ray_o, ray_d - ray_o);
-
+	
 	imageStore(dest_tex, pixel_coords, pixel);
 }

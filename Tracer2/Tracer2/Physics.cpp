@@ -25,6 +25,7 @@ void Physics::init() {
 	s1->radius = 1.0;
 	s1->reflectivity = 0.1;
 	s1->refractivity = 0.9;
+	s1->diffuse = 0.0;
 	s1->velocity = glm::vec3(0.0, 0.0, 0.0);
 	//s1->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
@@ -34,7 +35,7 @@ void Physics::init() {
 	s2->radius = 1.0;
 	s2->reflectivity = 0.1;
 	s2->refractivity = 0.0;
-	s2->diffuse = 0.0;
+	s2->diffuse = 0.2;
 	s2->velocity = glm::vec3(0.0, 0.0, 0.0);
 	//s2->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
@@ -45,24 +46,25 @@ void Physics::init() {
 	s3->reflectivity = 1.0;
 	s3->refractivity = 0.0;
 	s3->velocity = glm::vec3(0.0, 0.0, 0.0);
-	s3->diffuse = 1.0;
+	s3->diffuse = 0.0;
 	//s3->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s4 = new Sphere();
 	s4->center = glm::vec3(0.0, 6.0, -0.5);
 	s4->color = glm::vec3(1.0, 0.0, 0);
 	s4->radius = 1.5;
-	s4->reflectivity = 0.7;
+	s4->reflectivity = 0.5;
 	s4->refractivity = 0.0;
 	s4->diffuse = 0.0;
-	s4->velocity = glm::vec3(0.001f, 0.001f, 0.0);
+	s4->velocity = glm::vec3(0.01f, 0.01f, 0.0);
 
 	Sphere *s5 = new Sphere();
 	s5->center = glm::vec3(0.0, 6.0, 7.0);
 	s5->color = glm::vec3(0.0, 0.0, 1.0);
 	s5->radius = 0.5;
-	s5->reflectivity = 0.2;
+	s5->reflectivity = 0.05;
 	s5->refractivity = 0.0;
+	s5->diffuse = 0.2;
 	s5->velocity = glm::vec3(0.0, 0.0, 0.0);
 
 	spheres.push_back(s1);
@@ -75,37 +77,37 @@ void Physics::init() {
 	p1->point = glm::vec3(0.0, 0.0, -2.0);
 	p1->normal = glm::vec3(0.0, 0.0, -1.0);
 	p1->color = glm::vec3(0.9, 0.9, 0.4);
-	p1->reflectivity = 0.3;
+	p1->reflectivity = 0.2;
 
 	Plane *p2 = new Plane();
 	p2->point = glm::vec3(0.0, 0.0, 10.0);
 	p2->normal = glm::vec3(0.0, 0.0, 1.0);
 	p2->color = glm::vec3(1.0, 0.3, 0.3);
-	p2->reflectivity = 0.3;
+	p2->reflectivity = 0.2;
 
 	Plane *p3 = new Plane();
 	p3->point = glm::vec3(0.0, 8.0, 0.0);
 	p3->normal = glm::vec3(0.0, 1.0, 0.0);
 	p3->color = glm::vec3(1.0, 1.0, 1.0);
-	p3->reflectivity = 0.3;
+	p3->reflectivity = 0.2;
 
 	Plane *p4 = new Plane();
 	p4->point = glm::vec3(6.0, 0.0, 0.0);
 	p4->normal = glm::vec3(1.0, 0.0, 0.0);
 	p4->color = glm::vec3(1.0, 1.0, 1.0);
-	p4->reflectivity = 0.3;
+	p4->reflectivity = 0.2;
 
 	Plane *p5 = new Plane();
 	p5->point = glm::vec3(-6.0, 0.0, 0.0);
 	p5->normal = glm::vec3(-1.0, 0.0, 0.0);
 	p5->color = glm::vec3(1.0, 1.0, 1.0);
-	p5->reflectivity = 0.3;
+	p5->reflectivity = 0.2;
 
 	Plane *p6 = new Plane();
 	p6->point = glm::vec3(0.0, -4.0, 0.0);
 	p6->normal = glm::vec3(0.0, -1.0, 0.0);
 	p6->color = glm::vec3(1.0, 1.0, 1.0);
-	p6->reflectivity = 0.3;
+	p6->reflectivity = 0.2;
 
 	planes.push_back(p1);
 	planes.push_back(p2);
@@ -218,10 +220,7 @@ void Physics::tick(float deltaTime) {
 		}
 		else {
 			s->velocity.z -= gravityForce * deltaTime;
-
 		}
-
-
 
 
 		//if (s->center.z < ground + s->radius) {
