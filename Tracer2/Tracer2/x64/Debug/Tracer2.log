@@ -1,16 +1,4 @@
-﻿  Physics.cpp
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(26): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(27): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(36): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(38): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(65): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(67): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(80): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(86): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(92): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(98): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(104): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(110): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(189): warning C4305: '*=': truncation from 'double' to 'float'
+﻿  Tracer.cpp
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\tracer.cpp(118): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.exe
   Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.pdb (Full PDB)

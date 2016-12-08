@@ -174,7 +174,7 @@ int main(void)
 		}
 
 
-		glUniform3f(glGetUniformLocation(computeHandle, "sun_location"), 5.0, 1.0, 3.0);
+		glUniform3f(glGetUniformLocation(computeHandle, "sun_location"), 1.0, 0.0, 5.0);
 		glDispatchCompute(1024 / 16, 1024 / 16, 1); // 512^2 threads in blocks of 16^2
 
 		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);

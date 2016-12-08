@@ -123,7 +123,7 @@ hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 	
 	toReturn.reflectivity = p1.reflectivity;
 	toReturn.refractivity = 0;
-	toReturn.diffuse = 0.02;
+	toReturn.diffuse = 0.05;
 
 
 	return toReturn;
@@ -216,21 +216,22 @@ hit_info closest_hit(vec3 origin, vec3 target){
 
 vec4 light_intersection(hit_info info){
 	vec3 sunDir = normalize(sun_location - info.impact_point);
-	vec3 modified =  info.impact_point + sunDir*0.01f;
+	vec3 modified =  info.impact_point + info.impact_normal * 0.01f;
 
 	hit_info closest = closest_hit(modified, sun_location);
 	float accumulated_block = 0.0;
 	
 	float dist_to_sun = length(sun_location - modified);
-	while (length(closest.impact_point - modified) < dist_to_sun && accumulated_block < 0.8){
+	while (length(closest.impact_point - modified) < dist_to_sun){
 		accumulated_block += (1-closest.refractivity);
-		//accumulated_block = min(accumulated_block, 0.67);
+		accumulated_block = min(accumulated_block, 0.8);
 		closest = closest_hit(closest.impact_point, sun_location);
 	}
 	
 	float strength = (1-accumulated_block);
-	//float factor = max(0.0 , dot(info.impact_normal, sunDir)); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
-	return  vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
+	float factor = max(0.0, dot(info.impact_normal, sunDir)); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
+	//float factor = 1.0;
+	return  factor * vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
 };
 
 float rand(vec2 co){

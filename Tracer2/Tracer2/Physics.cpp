@@ -53,7 +53,7 @@ void Physics::init() {
 	s4->center = glm::vec3(0.0, 6.0, -0.5);
 	s4->color = glm::vec3(1.0, 0.0, 0);
 	s4->radius = 1.5;
-	s4->reflectivity = 0.5;
+	s4->reflectivity = 1.0;
 	s4->refractivity = 0.0;
 	s4->diffuse = 0.0;
 	s4->velocity = glm::vec3(0.01f, 0.01f, 0.0);
