@@ -154,6 +154,8 @@ int main(void)
 			glUniform3f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].color").c_str()), p.spheres[i]->color.x, p.spheres[i]->color.y, p.spheres[i]->color.z);
 			glUniform1f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].reflectivity").c_str()), p.spheres[i]->reflectivity);
 			glUniform1f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].refractivity").c_str()), p.spheres[i]->refractivity);
+			glUniform1f(glGetUniformLocation(computeHandle, ("spheres[" + std::to_string(i) + "].diffuse").c_str()), p.spheres[i]->diffuse);
+		
 		}
 
 		for (unsigned int i = 0; i < p.planes.size(); i++) {

@@ -1,4 +1,15 @@
-﻿  Tracer.cpp
-c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\tracer.cpp(118): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.exe
-  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.pdb (Full PDB)
+﻿  Physics.cpp
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(26): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(27): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(35): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(55): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(64): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(78): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(84): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(90): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(96): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(102): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(108): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\tracer2\tracer2\physics.cpp(187): warning C4305: '*=': truncation from 'double' to 'float'
+  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Tracer2\x64\Debug\Tracer2.exe
+  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Tracer2\x64\Debug\Tracer2.pdb (Full PDB)

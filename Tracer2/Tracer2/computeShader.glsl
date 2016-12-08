@@ -11,6 +11,7 @@ struct Sphere{
 	vec3 color;
 	float reflectivity;
 	float refractivity;
+	float diffuse;
 };
 
 struct Box{
@@ -33,6 +34,7 @@ struct hit_info{
 	vec3 color;
 	float reflectivity;
 	float refractivity;
+	float diffuse;
 	bool hit;
 };
 
@@ -92,6 +94,8 @@ hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 	info.refractivity = s1.refractivity;
 
 	info.color = s1.color;
+	info.diffuse = s1.reflectivity;
+	
 	
 	return info;
 	
@@ -100,14 +104,24 @@ hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 
 hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 	float t = dot(p1.normal, (p1.point - origin)) / dot(p1.normal, (target - origin));
+	
 	hit_info toReturn;
+	
+	toReturn.hit = t > 0;
+	if (!toReturn.hit){
+		return toReturn;
+	}
 	toReturn.impact_point = vec3(origin + (t * (target - origin)));
 	toReturn.impact_point += getBias(toReturn.impact_point, origin);
-	toReturn.impact_normal = p1.normal;
+	toReturn.impact_normal = -p1.normal;
 	toReturn.color = p1.color;
-	toReturn.hit = t > 0;
+	if (abs(p1.normal.z) - 1.0 == 0.0 && !(mod((toReturn.impact_point.x + toReturn.impact_point.y), 2) > 1.0)){
+		toReturn.color = vec3(1.0, 1.0, 1.0);
+	}
+	
 	toReturn.reflectivity = p1.reflectivity;
 	toReturn.refractivity = 0;
+	toReturn.diffuse = 1.0;
 
 
 	return toReturn;
@@ -199,7 +213,8 @@ hit_info closest_hit(vec3 origin, vec3 target){
 };
 
 vec4 light_intersection(hit_info info){
-	vec3 modified =  info.impact_point + (sun_location - info.impact_point)*0.01f;
+	vec3 sunDir = normalize(sun_location - info.impact_point);
+	vec3 modified =  info.impact_point + sunDir*0.01f;
 
 	hit_info closest = closest_hit(modified, sun_location);
 	float accumulated_block = 0.0;
@@ -207,16 +222,13 @@ vec4 light_intersection(hit_info info){
 	float dist_to_sun = length(sun_location - modified);
 	while (length(closest.impact_point - modified) < dist_to_sun && accumulated_block < 0.8){
 		accumulated_block += (1-closest.refractivity);
-		accumulated_block = min(accumulated_block, 0.8);
+		accumulated_block = min(accumulated_block, 0.67);
 		closest = closest_hit(closest.impact_point, sun_location);
 	}
 	
-	//determine shadow
 	float strength = (1-accumulated_block);
-	// if (length(closest.impact_point - modified) < dist_to_sun){
-		// strength = 0;
-	// }
-	return vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.25f, 2), 0.0);
+	float factor = max(max(info.diffuse , dot(info.impact_normal, sunDir)), 0.2); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
+	return factor * vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
 };
 
 vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {
@@ -278,7 +290,9 @@ void main() {
   vec4 pixel = vec4(0.0, 0.0, 0.0, 0.0);
   // get index in global work group i.e x,y position
   ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
-  
+	
+	
+	
 	ivec2 dims = imageSize(dest_tex); // fetch image dimensions
 
 

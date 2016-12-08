@@ -24,6 +24,7 @@ struct Sphere {
 	float radius;
 	float reflectivity;
 	float refractivity;
+	float diffuse = 1.0;
 };
 
 struct Box {
