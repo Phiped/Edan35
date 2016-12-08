@@ -40,7 +40,7 @@ struct hit_info{
 
 
 #define NUM_PLANES 6
-#define NUM_SPHERES 5
+#define NUM_SPHERES 3
 #define NUM_BOXES 1
 
 #define M_PI 3.1415926535897932384626433832795
@@ -224,14 +224,14 @@ vec4 light_intersection(hit_info info){
 	float dist_to_sun = length(sun_location - modified);
 	while (length(closest.impact_point - modified) < dist_to_sun){
 		accumulated_block += (1-closest.refractivity);
-		accumulated_block = min(accumulated_block, 0.8);
+		//accumulated_block = min(accumulated_block, 0.8);
 		closest = closest_hit(closest.impact_point, sun_location);
 	}
 	
 	float strength = (1-accumulated_block);
 	float factor = max(0.0, dot(info.impact_normal, sunDir)); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
 	//float factor = 1.0;
-	return  factor * vec4(info.color * (0.2 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
+	return  factor * vec4(info.color * (0.0 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
 };
 
 float rand(vec2 co){

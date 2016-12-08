@@ -20,7 +20,7 @@ void Physics::init() {
 	srand(static_cast <unsigned> (time(0)));
 
 	Sphere *s1 = new Sphere();
-	s1->center = glm::vec3(0.0, 6.0, 6.0);
+	s1->center = glm::vec3(0.0, 6.0, -1.0);
 	s1->color = glm::vec3(1.0, 0.4, 0.4);
 	s1->radius = 1.0;
 	s1->reflectivity = 0.1;
@@ -30,7 +30,7 @@ void Physics::init() {
 	//s1->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s2 = new Sphere();
-	s2->center = glm::vec3(0.0, 6.0, 4.0);
+	s2->center = glm::vec3(0.0, 6.0, 3.0);
 	s2->color = glm::vec3(0.4, 1.0, 0.4);
 	s2->radius = 1.0;
 	s2->reflectivity = 0.1;
@@ -40,12 +40,12 @@ void Physics::init() {
 	//s2->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s3 = new Sphere();
-	s3->center = glm::vec3(0.0, 6.0, 2.0);
+	s3->center = glm::vec3(0.0, 6.0, 1.0);
 	s3->color = glm::vec3(0.4, 1.0, 0.4);
 	s3->radius = 1.0;
 	s3->reflectivity = 1.0;
 	s3->refractivity = 0.0;
-	s3->velocity = glm::vec3(0.0, 0.0, 0.0);
+	s3->velocity = glm::vec3(0.1f, 0.1f, 0.0);
 	s3->diffuse = 0.0;
 	//s3->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
@@ -70,8 +70,8 @@ void Physics::init() {
 	spheres.push_back(s1);
 	spheres.push_back(s2);
 	spheres.push_back(s3);
-	spheres.push_back(s4);
-	spheres.push_back(s5);
+	//spheres.push_back(s4);
+	//spheres.push_back(s5);
 
 	Plane *p1 = new Plane();
 	p1->point = glm::vec3(0.0, 0.0, -2.0);
@@ -132,7 +132,7 @@ bool Physics::atGround(Sphere *s) {
 }
 
 void Physics::tick(float deltaTime) {
-	float frictionFactor = 0.5f;
+	float frictionFactor = 0.0f;
 	float gravityForce = 7.0f;
 
 	// increase this number for more spheres...
@@ -213,7 +213,7 @@ void Physics::tick(float deltaTime) {
 			}
 			
 		}
-		if (atGround(s) || collisionBelow[i]) {
+		if (atGround(s)) {
 			if (abs(s->velocity.z) < 0.10f) {
 				s->velocity.z = 0;
 			}
