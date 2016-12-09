@@ -166,15 +166,15 @@ int main(void)
 		}
 
 		for (unsigned int i = 0; i < p.boxes.size(); i++) {
-			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) +"].min").c_str()), p.boxes[i]->min.x, p.boxes[i]->min.y, p.boxes[i]->min.z);
+			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].min").c_str()), p.boxes[i]->min.x, p.boxes[i]->min.y, p.boxes[i]->min.z);
 			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].max").c_str()), p.boxes[i]->max.x, p.boxes[i]->max.y, p.boxes[i]->max.z);
 			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].color").c_str()), p.boxes[i]->color.x, p.boxes[i]->color.y, p.boxes[i]->color.z);
-			glUniform1f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].min").c_str()), p.boxes[i]->reflectivity);
+			glUniform1f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].reflectivity").c_str()), p.boxes[i]->reflectivity);
 
 		}
 
 
-		glUniform3f(glGetUniformLocation(computeHandle, "sun_location"), 1.0, 0.0, 5.0);
+		glUniform3f(glGetUniformLocation(computeHandle, "sun_location"), 4.0, 1.0, 3.0);
 		glDispatchCompute(1024 / 16, 1024 / 16, 1); // 512^2 threads in blocks of 16^2
 
 		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);

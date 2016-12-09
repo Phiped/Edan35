@@ -35,12 +35,13 @@ struct hit_info{
 	float reflectivity;
 	float refractivity;
 	float diffuse;
+	int type;
 	bool hit;
 };
 
 
 #define NUM_PLANES 6
-#define NUM_SPHERES 3
+#define NUM_SPHERES 5
 #define NUM_BOXES 1
 
 #define M_PI 3.1415926535897932384626433832795
@@ -97,6 +98,7 @@ hit_info hitSphere(Sphere s1, vec3 origin, vec3 target){
 
 	info.color = s1.color;
 	info.diffuse = s1.diffuse;
+	info.type = 0;
 	
 	
 	return info;
@@ -123,14 +125,20 @@ hit_info hitPlane(Plane p1, vec3 origin, vec3 target) {
 	
 	toReturn.reflectivity = p1.reflectivity;
 	toReturn.refractivity = 0;
-	toReturn.diffuse = 0.05;
+	toReturn.diffuse = 0.0;
+	toReturn.type = 1;
 
 
 	return toReturn;
 };
 
-hit_info hitBox(Box b, vec3 origin, vec3 target) {
+// bool axisOK(float min, float max, float origin, float dir){
+	// if ((dir == 0) && origin < )
+// }
 
+
+hit_info hitBox(Box b, vec3 origin, vec3 target) {
+ 
 	vec3 dir = target - origin;
 	float tx1 = (b.min.x - origin.x) / dir.x;
 	float tx2 = (b.max.x - origin.x) / dir.x;
@@ -151,25 +159,57 @@ hit_info hitBox(Box b, vec3 origin, vec3 target) {
 	tmax = min(tmax, max(tz1, tz2));
 	
 	hit_info info;
-	info.hit = tmin < tmax;
+	info.hit = tmin < tmax && tmax > 0;
 	info.color = b.color;
 	info.impact_point = origin + dir * tmin;
-	vec3 offset = info.impact_point - ((b.min + b.max) / 2);
+	info.reflectivity = b.reflectivity;
+	info.refractivity = 0.0;
 	
-	/// TODO fix the retarded box reflections that aren't working at all
 	
-	if (abs(offset.x) > abs(offset.y) && abs(offset.x) > abs(offset.z)){
-		info.impact_normal = vec3(normalize(offset.x), 0.0, 0.0);
-	} else if (abs(offset.y) > abs(offset.z)) {
-		info.impact_normal = vec3(0.0, normalize(offset.y), 0.0);
-	} else{
-		info.impact_normal = vec3(0.0, 0.0, normalize(offset.z));
+	
+	// if (info.impact_point.x == b.min.x){
+		// info.impact_normal = vec3(1.0, 0.0, 0.0);
+	// }
+	// else if (info.impact_point.y == b.max.y) {
+		// info.impact_normal = vec3(1.0, 0.0, 0.0);
+	// }
+	
+	// vec3 center = (b.min + b.max) / 2.0;
+	// vec3 dist = info.impact_point - center;
+	
+	// dist *= b.min)
+	
+	//info.impact_normal = vec3(0.0, -1.0, 0.0);
+	// if (abs(dist.x) > (dist.y) && abs(dist.x) > abs(dist.z)){
+		// info.impact_normal = vec3(-dist.x, 0.0, 0.0);
+	// } else if (abs(dist.y) > abs(dist.z)){
+		// info.impact_normal = vec3(0.0, -dist.y, 0.0);
+	// } else{
+		// info.impact_normal = vec3(0.0, 0.0, -dist.z);
+	// }
+	
+	
+	vec3 impact = info.impact_point;
+	if(impact.x == b.min.x){
+		info.impact_normal =normalize(vec3((b.min.x - b.max.x), 0.0 ,0.0));
+	}else if(impact.x == b.max.x){
+		info.impact_normal =normalize(vec3((b.max.x - b.min.x), 0.0 ,0.0));
+	}
+	else if(impact.y == b.min.y){
+		info.impact_normal =normalize(vec3(0.0,(b.min.y - b.max.y),0.0));
+	}
+	else if(impact.y == b.max.y){
+		info.impact_normal =normalize(vec3(0.0,(b.max.y - b.min.y),0.0));
+	}
+	else if(impact.z == b.min.z){
+		info.impact_normal =normalize(vec3(0.0,0.0,(b.min.z - b.max.z)));
+	}else if(impact.z == b.max.z){
+		info.impact_normal =normalize(vec3(0.0,0.0,(b.max.z - b.min.z)));
 	}
 	
-	info.reflectivity = b.reflectivity;
-	info.refractivity = 0;
-	
 	return info;
+	
+
 };
 
 
@@ -216,21 +256,29 @@ hit_info closest_hit(vec3 origin, vec3 target){
 
 vec4 light_intersection(hit_info info){
 	vec3 sunDir = normalize(sun_location - info.impact_point);
-	vec3 modified =  info.impact_point + info.impact_normal * 0.01f;
+	vec3 modified =  info.impact_point + sunDir * 0.01f;
 
+	//return vec4(1.0);
+	
 	hit_info closest = closest_hit(modified, sun_location);
 	float accumulated_block = 0.0;
 	
 	float dist_to_sun = length(sun_location - modified);
-	while (length(closest.impact_point - modified) < dist_to_sun){
-		accumulated_block += (1-closest.refractivity);
-		//accumulated_block = min(accumulated_block, 0.8);
-		closest = closest_hit(closest.impact_point, sun_location);
+	
+	if (length(closest.impact_point - modified) < dist_to_sun){
+		accumulated_block = 1.0;
 	}
+	//while (length(closest.impact_point - modified) < dist_to_sun){
+		//accumulated_block += (1-closest.refractivity);
+		//accumulated_block = min(accumulated_block, 0.1-accumulated_block);
+		//closest = closest_hit(closest.impact_point, sun_location);
+	//}
 	
 	float strength = (1-accumulated_block);
-	float factor = max(0.0, dot(info.impact_normal, sunDir)); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
-	//float factor = 1.0;
+	float factor  = 1.0;
+	if (info.type == 0)
+		factor = max(info.reflectivity, dot(info.impact_normal, sunDir)); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
+	
 	return  factor * vec4(info.color * (0.0 + strength) / pow(dist_to_sun* 0.20f, 2), 0.0);
 };
 
@@ -271,7 +319,7 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 		vec4 local = light_intersection(i); // diffuse + specular
 		// since recursion is not allowed, we can only allow as many "splits" as new functions we have, this is a workaround (hack)
 		if (i.refractivity > 0){
-			finalColor += local*(1.0-i.refractivity-i.reflectivity)*frac;
+			finalColor += local*(1.0-i.refractivity - i.reflectivity)*frac;
 			vec4 reflected = find_color2(i.impact_point, reflect(rayDir,i.impact_normal), i.reflectivity);
 			finalColor += reflected;
 			frac *= i.refractivity; // <- scale down all subsequent rays
@@ -280,11 +328,11 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 			vec3 dist = refract(rayDir, i.impact_normal, 0.8);
 			rayDir = dist;
 		} else{
-			//i.diffuse = -i.diffuse;
-			vec3 newDir = vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + rayDir.xy)) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1,0))) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(0,1))) * i.diffuse);
+			
 			finalColor += local*(1.0-i.reflectivity)*frac;
 			frac *= i.reflectivity; // <- scale down all subsequent rays
-			rayDir=reflect(newDir,i.impact_normal);
+			rayDir=reflect(rayDir,i.impact_normal);
+			rayDir =vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + rayDir.xy)) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1,0))) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(0,1))) * i.diffuse);
 		}
 		rayStart=i.impact_point;
 
