@@ -117,10 +117,10 @@ void Physics::init() {
 	planes.push_back(p6);
 
 	Box *b1 = new Box();
-	b1->min = glm::vec3(-2.0, 2.0, -2.0);
-	b1->max = glm::vec3(-1.0, 3.0, -1.0);
-	b1->color = glm::vec3(1.0, 0.6, 0.5);
-	b1->reflectivity = 1.0;
+	b1->min = glm::vec3(-3.0, 2.0, -2.0);
+	b1->max = glm::vec3(-1.0, 4.0, 0.0);
+	b1->color = glm::vec3(1.0, 0.85, 0.0);
+	b1->reflectivity = 0.2;
 
 	boxes.push_back(b1);
 
@@ -132,7 +132,7 @@ bool Physics::atGround(Sphere *s) {
 }
 
 void Physics::tick(float deltaTime) {
-	float frictionFactor = 0.0f;
+	float frictionFactor = 0.5f;
 	float gravityForce = 7.0f;
 
 	// increase this number for more spheres...

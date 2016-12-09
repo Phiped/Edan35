@@ -164,6 +164,8 @@ hit_info hitBox(Box b, vec3 origin, vec3 target) {
 	info.impact_point = origin + dir * tmin;
 	info.reflectivity = b.reflectivity;
 	info.refractivity = 0.0;
+	info.type = 2;
+	info.diffuse = 0.05;
 	
 	
 	
@@ -190,22 +192,25 @@ hit_info hitBox(Box b, vec3 origin, vec3 target) {
 	
 	
 	vec3 impact = info.impact_point;
-	if(impact.x == b.min.x){
+	if(abs(impact.x - b.min.x) < BIAS_FACTOR){
 		info.impact_normal =normalize(vec3((b.min.x - b.max.x), 0.0 ,0.0));
-	}else if(impact.x == b.max.x){
+	}else if(abs(impact.x - b.max.x) < BIAS_FACTOR){
 		info.impact_normal =normalize(vec3((b.max.x - b.min.x), 0.0 ,0.0));
 	}
-	else if(impact.y == b.min.y){
+	else if(abs(impact.y - b.min.y) < 0.1f){
 		info.impact_normal =normalize(vec3(0.0,(b.min.y - b.max.y),0.0));
 	}
-	else if(impact.y == b.max.y){
+	else if(abs(impact.y - b.max.y) < 0.1f){
 		info.impact_normal =normalize(vec3(0.0,(b.max.y - b.min.y),0.0));
 	}
-	else if(impact.z == b.min.z){
+	else if(abs(impact.z - b.min.z) < BIAS_FACTOR){
 		info.impact_normal =normalize(vec3(0.0,0.0,(b.min.z - b.max.z)));
-	}else if(impact.z == b.max.z){
+	}else if(abs(impact.z - b.max.z) < BIAS_FACTOR){
 		info.impact_normal =normalize(vec3(0.0,0.0,(b.max.z - b.min.z)));
 	}
+	
+	info.impact_point += info.impact_normal * 0.001f;
+	//info.impact_normal = vec3(0.0, 1.0, 0.0);
 	
 	return info;
 	
@@ -258,7 +263,6 @@ vec4 light_intersection(hit_info info){
 	vec3 sunDir = normalize(sun_location - info.impact_point);
 	vec3 modified =  info.impact_point + sunDir * 0.01f;
 
-	//return vec4(1.0);
 	
 	hit_info closest = closest_hit(modified, sun_location);
 	float accumulated_block = 0.0;
@@ -331,6 +335,8 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 			
 			finalColor += local*(1.0-i.reflectivity)*frac;
 			frac *= i.reflectivity; // <- scale down all subsequent rays
+			
+			//rayDir = vec3(i.impact_normal.x + mix(0.25, -0.25, rand(pixel_coords.xy + rayDir.xy)) ,i.impact_normal.y + mix(0.25, -0.25, rand(pixel_coords.xy + vec2(1,0))), i.impact_normal.z + mix(0.25, -0.25, rand(pixel_coords.xy + vec2(0,1))));
 			rayDir=reflect(rayDir,i.impact_normal);
 			rayDir =vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + rayDir.xy)) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1,0))) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(0,1))) * i.diffuse);
 		}
