@@ -42,7 +42,7 @@ struct hit_info{
 
 
 #define NUM_PLANES 6
-#define NUM_SPHERES 5
+#define NUM_SPHERES 4	
 #define NUM_BOXES 1
 
 #define M_PI 3.1415926535897932384626433832795
@@ -267,7 +267,7 @@ vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {
 		if (i.refractivity > 0){
 			finalColor += local*(1.0-i.refractivity-i.reflectivity)*frac;
 			frac *= i.refractivity; // <- scale down all subsequent rays
-			vec3 dist = refract(rayDir, i.impact_normal, 0.97);
+			vec3 dist = refract(rayDir, i.impact_normal, 0.8);
 			rayDir = dist;
 		} else{
 			finalColor += local*(1.0-i.reflectivity)*frac;
@@ -303,14 +303,13 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 
 			if (i.diffuse > 0){
 				vec4 total = vec4(0.0);
-				for (float j = 0; j < 3; j++){
+				for (float j = 0; j < 2; j++){
 						vec3 newDir = vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(j,j))) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + rand(vec2(j,-j + 1)) )) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1 + j,-j))) * i.diffuse);
 						total += find_color2(i.impact_point, newDir, frac);
 				}
-				finalColor += total/3;
+				finalColor += total/2;
 				return finalColor;
 			} 
-			//rayDir =vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + rayDir.xy)) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1,0))) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(0,1))) * i.diffuse);
 		}
 		rayStart=i.impact_point;
 	}

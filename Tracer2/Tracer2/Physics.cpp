@@ -27,7 +27,6 @@ void Physics::init() {
 	s1->refractivity = 0.9;
 	s1->diffuse = 0.0;
 	s1->velocity = glm::vec3(0.0, 0.0, 0.0);
-	//s1->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s2 = new Sphere();
 	s2->center = glm::vec3(0.0, 6.0, 4.0);
@@ -37,7 +36,6 @@ void Physics::init() {
 	s2->refractivity = 0.0;
 	s2->diffuse = 0.2;
 	s2->velocity = glm::vec3(0.0, 0.0, 0.0);
-	//s2->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s3 = new Sphere();
 	s3->center = glm::vec3(0.0, 6.0, 2.0);
@@ -47,7 +45,6 @@ void Physics::init() {
 	s3->refractivity = 0.0;
 	s3->velocity = glm::vec3(0.0f, 0.0f, 0.0);
 	s3->diffuse = 0.0;
-	//s3->velocity = glm::vec3(getRandomDir(), getRandomDir(), getRandomDir());
 
 	Sphere *s4 = new Sphere();
 	s4->center = glm::vec3(0.0, 6.0, -0.5);
@@ -71,7 +68,7 @@ void Physics::init() {
 	spheres.push_back(s2);
 	spheres.push_back(s3);
 	spheres.push_back(s4);
-	spheres.push_back(s5);
+	//spheres.push_back(s5);
 
 	Plane *p1 = new Plane();
 	p1->point = glm::vec3(0.0, 0.0, -2.0);
@@ -186,8 +183,6 @@ void Physics::tick(float deltaTime) {
 			float num = -dot(p->normal, p->point);
 			float distance = std::abs(p->normal.x * s->center.x + p->normal.y * s->center.y + p->normal.z * s->center.z + num) / std::sqrt(p->normal.x *p->normal.x + p->normal.y * p->normal.y + p->normal.z * p->normal.z);
 			if (distance <= s->radius && glm::dot(p->normal, s->velocity) > 0) {
-				// collision detected
-				//std::cout << "COLLISION";
 				s->velocity = s->velocity - 2 * glm::dot(p->normal, s->velocity) * p->normal;
 				s->velocity.z *= 0.7;
 			}
@@ -195,54 +190,55 @@ void Physics::tick(float deltaTime) {
 
 		// box collisions
 
-		//for (Box *b : boxes) {
-		//	float dmin = 0;
+		for (Box *b : boxes) {
+			float dmin = 0;
 
-		//	auto center = s->center;
-		//	auto bmin = b->min;
-		//	auto bmax = b->max;
+			auto center = s->center;
+			auto bmin = b->min;
+			auto bmax = b->max;
 
-		//	if (center.x < bmin.x) {
-		//		dmin += pow(center.x - bmin.x, 2);
-		//	}
-		//	else if (center.x > bmax.x) {
-		//		dmin += pow(center.x - bmax.x, 2);
-		//	}
+			if (center.x < bmin.x) {
+				dmin += pow(center.x - bmin.x, 2);
+			}
+			else if (center.x > bmax.x) {
+				dmin += pow(center.x - bmax.x, 2);
+			}
 
-		//	if (center.y < bmin.y) {
-		//		dmin += pow(center.y - bmin.y, 2);
-		//	}
-		//	else if (center.y > bmax.y) {
-		//		dmin += pow(center.y - bmax.y, 2);
-		//	}
+			if (center.y < bmin.y) {
+				dmin += pow(center.y - bmin.y, 2);
+			}
+			else if (center.y > bmax.y) {
+				dmin += pow(center.y - bmax.y, 2);
+			}
 
-		//	if (center.z < bmin.z) {
-		//		dmin += pow(center.z - bmin.z, 2);
-		//	}
-		//	else if (center.z > bmax.z) {
-		//		dmin += pow(center.z - bmax.z, 2);
-		//	}
+			if (center.z < bmin.z) {
+				dmin += pow(center.z - bmin.z, 2);
+			}
+			else if (center.z > bmax.z) {
+				dmin += pow(center.z - bmax.z, 2);
+			}
 
-		//	if (dmin <= pow(s->radius, 2)) {
-		//		glm::vec3 center = (b->min + b->max) * glm::vec3(0.5, 0.5, 0.5);
-		//		glm::vec3 dir = s->center - center;
+			if (dmin <= pow(s->radius, 2)) {
+				glm::vec3 center = (b->min + b->max) * glm::vec3(0.5, 0.5, 0.5);
+				glm::vec3 dir = s->center - center;
 
-		//		if (abs(dir.x) > abs(dir.y) && abs(dir.x) > abs(dir.z)) {
-		//			auto newV = glm::normalize(glm::vec3(dir.x, 0.0, 0.0));
-		//			s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
-		//		}
-		//		else if (abs(dir.y) > abs(dir.z)) {
-		//			auto newV = glm::normalize(glm::vec3(0.0, dir.y, 0.0));
-		//			s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
-		//		}
-		//		else {
-		//			auto newV = glm::normalize(glm::vec3(0.0, 0.0, dir.z));
-		//			s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
-		//		}
-		//		//auto normal = glm::vec3(1.0, 0.0, 0.0);
-		//		//s->velocity = s->velocity - 2 * glm::dot(normal, s->velocity) * normal;
-		//	}
-		//}
+				if (abs(dir.x) > abs(dir.y) && abs(dir.x) > abs(dir.z)) {
+					auto newV = glm::normalize(glm::vec3(dir.x, 0.0, 0.0));
+					s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
+				}
+				else if (abs(dir.y) > abs(dir.z)) {
+					auto newV = glm::normalize(glm::vec3(0.0, dir.y, 0.0));
+					s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
+				}
+				else {
+					auto newV = glm::normalize(glm::vec3(0.0, 0.0, dir.z));
+					collisionBelow[i] = true;
+					s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
+					s->velocity.z *= 0.9;
+
+				}
+			}
+		}
 
 		s->center += s->velocity * deltaTime;
 
