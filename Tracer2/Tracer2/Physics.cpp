@@ -53,7 +53,7 @@ void Physics::init() {
 	s4->reflectivity = 0.7;
 	s4->refractivity = 0.0;
 	s4->diffuse = 0.0;
-	s4->velocity = glm::vec3(0.01f, 0.01f, 0.0);
+	s4->velocity = glm::vec3(0.1f, 0.1f, 0.0);
 
 	Sphere *s5 = new Sphere();
 	s5->center = glm::vec3(0.0, 6.0, 7.5);
@@ -129,8 +129,8 @@ bool Physics::atGround(Sphere *s) {
 }
 
 void Physics::tick(float deltaTime) {
-	float frictionFactor = 0.5f;
-	float gravityForce = 7.0f;
+	float frictionFactor = 0.1f;
+	float gravityForce = 10.0f;
 
 	// increase this number for more spheres...
 	bool collisionBelow[10] = { false };
@@ -218,25 +218,30 @@ void Physics::tick(float deltaTime) {
 				dmin += pow(center.z - bmax.z, 2);
 			}
 
-			if (dmin <= pow(s->radius, 2)) {
-				glm::vec3 center = (b->min + b->max) * glm::vec3(0.5, 0.5, 0.5);
+			if (dmin < pow(s->radius, 2)) {
+				float closest = 10000.0;
+
+				glm::vec3 center = (b->min + b->max);
+				center /= 2;
 				glm::vec3 dir = s->center - center;
 
+				glm::vec3 newV;
 				if (abs(dir.x) > abs(dir.y) && abs(dir.x) > abs(dir.z)) {
-					auto newV = glm::normalize(glm::vec3(dir.x, 0.0, 0.0));
-					s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
+					newV = normalize(glm::vec3(-dir.x, 0.0, 0.0));
 				}
 				else if (abs(dir.y) > abs(dir.z)) {
-					auto newV = glm::normalize(glm::vec3(0.0, dir.y, 0.0));
-					s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
+					newV = normalize(glm::vec3(0.0, -dir.y, 0.0));
 				}
 				else {
-					auto newV = glm::normalize(glm::vec3(0.0, 0.0, dir.z));
+					newV = normalize(glm::vec3(0.0, 0.0, -dir.z));
 					collisionBelow[i] = true;
-					s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
-					s->velocity.z *= 0.9;
+					s->velocity.z *= 0.7;
 
 				}
+				s->velocity = s->velocity - 2 * glm::dot(newV, s->velocity) * newV;
+				s->center += dir * 0.01f;
+
+
 			}
 		}
 
@@ -247,7 +252,7 @@ void Physics::tick(float deltaTime) {
 	for (int i = 0; i < spheres.size(); i++) {
 		Sphere *s = spheres[i];
 
-		if (collisionBelow[i]) {
+		if (collisionBelow[i] || atGround(s)) {
 			// reduce speeds
 			if (s->velocity.x > 0) {
 				s->velocity.x = std::max(0.0f, s->velocity.x - deltaTime * frictionFactor);
@@ -263,8 +268,8 @@ void Physics::tick(float deltaTime) {
 			}
 			
 		}
-		if (atGround(s)) {
-			if (abs(s->velocity.z) < 0.10f) {
+		if (atGround(s) || collisionBelow[i]) {
+			if (abs(s->velocity.z) < 0.01f) {
 				s->velocity.z = 0;
 			}
 

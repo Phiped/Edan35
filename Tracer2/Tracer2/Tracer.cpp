@@ -143,7 +143,7 @@ int main(void)
 			p.spheres[controlled]->velocity += glm::vec3(push_strength, 0.0, 0.0) * deltaTime;
 
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-			p.spheres[controlled]->velocity += glm::vec3(0.0, 0.0, push_strength * 2 * deltaTime);
+			p.spheres[controlled]->velocity += glm::vec3(0.0, 0.0, push_strength * 3 * deltaTime);
 
 		// add all of our objects
 
@@ -170,7 +170,6 @@ int main(void)
 			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].max").c_str()), p.boxes[i]->max.x, p.boxes[i]->max.y, p.boxes[i]->max.z);
 			glUniform3f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].color").c_str()), p.boxes[i]->color.x, p.boxes[i]->color.y, p.boxes[i]->color.z);
 			glUniform1f(glGetUniformLocation(computeHandle, ("boxes[" + std::to_string(i) + "].reflectivity").c_str()), p.boxes[i]->reflectivity);
-
 		}
 
 

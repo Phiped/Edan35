@@ -1,2 +1,19 @@
-﻿  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.exe
+﻿  Physics.cpp
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(26): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(27): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(35): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(37): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(53): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(62): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(64): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(77): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(83): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(89): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(95): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(101): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(107): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(120): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(187): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\tobbe\desktop\edan35\edan35\tracer2\tracer2\physics.cpp(238): warning C4305: '*=': truncation from 'double' to 'float'
+  Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.exe
   Tracer2.vcxproj -> C:\Users\Tobbe\Desktop\edan35\Edan35\Tracer2\x64\Debug\Tracer2.pdb (Full PDB)
