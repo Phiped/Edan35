@@ -216,7 +216,7 @@ void Physics::tick(float deltaTime) {
 			}
 			else if (center.z > bmax.z) {
 				dmin += pow(center.z - bmax.z, 2);
-			}
+			}	
 
 			if (dmin < pow(s->radius, 2)) {
 				float closest = 10000.0;

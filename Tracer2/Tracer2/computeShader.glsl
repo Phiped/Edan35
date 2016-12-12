@@ -303,11 +303,11 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 
 			if (i.diffuse > 0){
 				vec4 total = vec4(0.0);
-				for (float j = 0; j < 1; j++){
-						vec3 newDir = vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(j,j))) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + rand(vec2(j,-j + 1)) )) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1 + j,-j))) * i.diffuse);
+				for (float j = 0; j < 5; j++){
+						vec3 newDir = vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(j,j) + rayDir.xz)) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + rand(vec2(j,-j + 1) +  rayDir.yz) )) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1 + j,-j) +  rayDir.yz)) * i.diffuse);
 						total += find_color2(i.impact_point, newDir, frac);
 				}
-				finalColor += total;
+				finalColor += total/5;
 				return finalColor;
 			} 
 		}
