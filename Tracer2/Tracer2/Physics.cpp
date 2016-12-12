@@ -114,8 +114,8 @@ void Physics::init() {
 	planes.push_back(p6);
 
 	Box *b1 = new Box();
-	b1->min = glm::vec3(-5.0, 5.0, -2.0);
-	b1->max = glm::vec3(-3.0, 7.0, 0.0);
+	b1->min = glm::vec3(-5.0, 3.0, -2.0);
+	b1->max = glm::vec3(-3.0, 5.0, 0.0);
 	b1->color = glm::vec3(1.0, 0.85, 0.0);
 	b1->reflectivity = 0.8;
 

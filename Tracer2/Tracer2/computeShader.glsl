@@ -242,7 +242,7 @@ vec4 light_intersection(hit_info info){
 	float dist_to_sun = length(sun_location - modified);
 	
 	if (length(closest.impact_point - modified) < dist_to_sun){
-		accumulated_block = 1.0;
+		accumulated_block = 0.5;
 	}
 	
 	float strength = (1-accumulated_block);
