@@ -285,7 +285,7 @@ vec4 find_color2(vec3 rayStart,vec3 rayDir, float frac) {
 vec4 find_color(vec3 rayStart,vec3 rayDir) {
 	vec4 finalColor=vec4(0.0);
 	float frac=1.0; // fraction of my color to add to finalColor
-	for (int raybounce=0;raybounce<NUM_BOUNCES && frac > 0.05;raybounce++) {
+	for (int raybounce=0;raybounce<NUM_BOUNCES && frac > 0.01;raybounce++) {
 		hit_info i = closest_hit(rayStart, rayDir); // geometric search
 		vec4 local = light_intersection(i); // diffuse + specular
 		// since recursion is not allowed, we can only allow as many "splits" as new functions we have, this is a workaround (hack)
@@ -307,7 +307,7 @@ vec4 find_color(vec3 rayStart,vec3 rayDir) {
 						vec3 newDir = vec3(rayDir.x + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(j,j) + rayDir.xz)) * i.diffuse ,rayDir.y + mix(0.5, -0.5, rand(pixel_coords.xy + rand(vec2(j,-j + 1) +  rayDir.yz) )) * i.diffuse, rayDir.z + mix(0.5, -0.5, rand(pixel_coords.xy + vec2(1 + j,-j) +  rayDir.yz)) * i.diffuse);
 						total += find_color2(i.impact_point, newDir, frac);
 				}
-				finalColor += total/5;
+				finalColor += total * 0.2;
 				return finalColor;
 			} 
 		}
