@@ -53,7 +53,7 @@ void Physics::init() {
 	s4->reflectivity = 0.7;
 	s4->refractivity = 0.0;
 	s4->diffuse = 0.0;
-	s4->velocity = glm::vec3(0.1f, 0.1f, 0.0);
+	s4->velocity = glm::vec3(-0.3f, 0.2f, 0.0);
 
 	Sphere *s5 = new Sphere();
 	s5->center = glm::vec3(0.0, 6.0, 7.5);
