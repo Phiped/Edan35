@@ -59,7 +59,7 @@ void Physics::init() {
 	s5->center = glm::vec3(0.0, 6.0, 7.5);
 	s5->color = glm::vec3(0.0, 0.0, 1.0);
 	s5->radius = 0.5;
-	s5->reflectivity = 0.05;
+	s5->reflectivity = 0.1;
 	s5->refractivity = 0.0;
 	s5->diffuse = 0.1;
 	s5->velocity = glm::vec3(0.0, 0.0, 0.0);
@@ -68,7 +68,7 @@ void Physics::init() {
 	spheres.push_back(s2);
 	spheres.push_back(s3);
 	spheres.push_back(s4);
-	//spheres.push_back(s5);
+	spheres.push_back(s5);
 
 	Plane *p1 = new Plane();
 	p1->point = glm::vec3(0.0, 0.0, -2.0);
@@ -268,7 +268,7 @@ void Physics::tick(float deltaTime) {
 			}
 			
 		}
-		if (atGround(s) || collisionBelow[i]) {
+		if (atGround(s)) {
 			if (abs(s->velocity.z) < 0.15f) {
 				s->velocity.z = 0;
 			}

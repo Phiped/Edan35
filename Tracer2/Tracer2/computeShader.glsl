@@ -42,7 +42,7 @@ struct hit_info{
 
 
 #define NUM_PLANES 6
-#define NUM_SPHERES 4	
+#define NUM_SPHERES 5	
 #define NUM_BOXES 1
 
 #define M_PI 3.1415926535897932384626433832795
@@ -248,9 +248,9 @@ vec4 light_intersection(hit_info info){
 	float strength = (1-accumulated_block);
 	float factor  = 1.0;
 	if (info.type == 0)
-		factor = max(info.reflectivity, dot(info.impact_normal, sunDir) + 0.3); //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
+		factor = max(0.0, dot(info.impact_normal, sunDir)) + 0.5; //info.diffuse * max(0.0, dot(info.impact_normal, sunDir)) + (1-info.diffuse);
 	
-	return  factor * vec4(info.color * (0.0 + strength) / pow(dist_to_sun* 0.2f, 2), 0.0);
+	return  factor * vec4(info.color * (0.0 + strength) / pow(dist_to_sun* 0.21f, 2), 0.0);
 };
 
 float rand(vec2 co){
